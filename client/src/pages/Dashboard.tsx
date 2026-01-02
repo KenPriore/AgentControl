@@ -37,12 +37,12 @@ export default function Dashboard() {
           description="Operational in last hour"
         />
         <KpiCard 
-          title="Privilege Claims" 
-          value="99.2%" 
+          title="Playbook Deviations" 
+          value="12%" 
           trend="+0.4%" 
-          trendType="positive"
+          trendType="negative"
           icon={Shield}
-          description="Auto-verification rate"
+          description="Terms varying from standard"
         />
         <KpiCard 
           title="Intervention Rate" 

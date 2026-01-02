@@ -41,13 +41,13 @@ export default function Agents() {
                  <div className="space-y-4">
                    <div className="flex gap-2">
                      <Badge variant="outline" className="bg-blue-950/30 text-blue-400 border-blue-900/50">GPT-4-Turbo</Badge>
-                     <Badge variant="outline" className="bg-purple-950/30 text-purple-400 border-purple-900/50">VectorDB: CaseLaw_v2</Badge>
+                     <Badge variant="outline" className="bg-purple-950/30 text-purple-400 border-purple-900/50">Rules Engine: Sales_v2</Badge>
                    </div>
                    
                    <div className="space-y-2">
                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Active Tools</p>
                      <div className="flex flex-wrap gap-2">
-                       {['Westlaw Search', 'PDF Extractor', 'Privilege Classifier'].map((tool) => (
+                       {['Clause Database', 'Playbook Comparer', 'Risk Calculator'].map((tool) => (
                          <div key={tool} className="flex items-center gap-1.5 px-2 py-1 bg-secondary rounded text-xs">
                            <Puzzle className="h-3 w-3 text-muted-foreground" />
                            {tool}
@@ -81,11 +81,11 @@ export default function Agents() {
             </CardHeader>
             <CardContent className="grid gap-3">
                {[
-                 { name: "Westlaw API", type: "Research", icon: Database },
-                 { name: "Pacer Case Puller", type: "Research", icon: Database },
-                 { name: "Contract Summarizer", type: "Analysis", icon: FileText },
-                 { name: "Logic Validator", type: "Governance", icon: ShieldCheck },
-                 { name: "Email Notification", type: "Communication", icon: PenTool },
+                 { name: "Sales Playbook v4", type: "Reference", icon: Database },
+                 { name: "Finance Policy API", type: "Compliance", icon: Database },
+                 { name: "Order Form Parser", type: "Analysis", icon: FileText },
+                 { name: "Risk Scorer", type: "Governance", icon: ShieldCheck },
+                 { name: "Approval Router", type: "Workflow", icon: PenTool },
                ].map((tool, i) => (
                  <div key={i} className="flex items-center gap-3 p-3 bg-card border border-border rounded-lg cursor-grab active:cursor-grabbing hover:bg-sidebar-accent transition-colors">
                    <div className="p-2 bg-background rounded border border-border">
