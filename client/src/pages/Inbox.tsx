@@ -9,8 +9,8 @@ export default function Inbox() {
     <div className="flex flex-col gap-6 max-w-[1200px] mx-auto">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">HITL Queue</h1>
-          <p className="text-muted-foreground mt-1">High-Risk Inbox: Human intervention required before execution.</p>
+          <h1 className="text-3xl font-bold tracking-tight">Attorney Action Queue</h1>
+          <p className="text-muted-foreground mt-1">Prioritized decision queue ranked by risk impact.</p>
         </div>
       </div>
 
@@ -49,7 +49,10 @@ export default function Inbox() {
                  <Button variant="destructive" className="w-full gap-2">
                    <XCircle className="h-4 w-4" /> Reject
                  </Button>
-                 <Button variant="outline" className="w-full gap-2">
+                 <Button variant="outline" className="w-full gap-2 text-blue-600 border-blue-200 hover:bg-blue-50">
+                   <ShieldAlert className="h-4 w-4" /> Trust & Deploy
+                 </Button>
+                 <Button variant="ghost" className="w-full gap-2 text-muted-foreground">
                    <UserCheck className="h-4 w-4" /> Correct Reasoning
                  </Button>
               </div>

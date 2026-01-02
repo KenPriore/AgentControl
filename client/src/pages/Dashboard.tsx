@@ -14,8 +14,8 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Attorney Workflow Monitor</h1>
-          <p className="text-muted-foreground mt-1">Intelligent Agreement Management & Maestro Orchestration</p>
+          <h1 className="text-3xl font-bold tracking-tight">Nexus Command</h1>
+          <p className="text-muted-foreground mt-1">Counsel Nexus Intelligent Agreement Management</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
@@ -30,28 +30,28 @@ export default function Dashboard() {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <KpiCard 
-          title="Pending Orchestration Steps" 
+          title="My Active Maestro Steps" 
           value={iamMetrics.orchestrationSteps}
           trend="+2" 
           trendType="negative"
           icon={GitMerge}
-          description="Maestro steps awaiting action"
+          description="Tasks assigned to you"
         />
         <KpiCard 
-          title="IAM Agreement Count" 
+          title="My Managed Agreements" 
           value={iamMetrics.agreementCount.current.toLocaleString()} 
           trend={`${Math.round((iamMetrics.agreementCount.current / iamMetrics.agreementCount.entitlement) * 100)}% Used`} 
           trendType="neutral"
           icon={FileText}
-          description={`of ${iamMetrics.agreementCount.entitlement.toLocaleString()} Entitlement`}
+          description={`of ${iamMetrics.agreementCount.entitlement.toLocaleString()} Seat Allowance`}
         />
         <KpiCard 
-          title="Search Intelligence" 
+          title="Navigator Indexing Status" 
           value={`${iamMetrics.navigatorIndex}%`} 
           trend="+0.1%" 
           trendType="positive"
           icon={Search}
-          description="Navigator Documents Indexed"
+          description="Personal Archive Indexed"
         />
       </div>
 

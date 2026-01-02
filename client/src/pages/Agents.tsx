@@ -62,6 +62,7 @@ export default function Agents() {
                    <div className="pt-4 mt-2 border-t border-border/50 flex justify-between items-center">
                      <span className="text-xs text-muted-foreground">Last deployment: 2 hours ago</span>
                      <div className="flex gap-2">
+                       <Button variant="outline" size="sm" className="h-8">Prompt Recipe</Button>
                        <Button variant="outline" size="sm" className="h-8">Test</Button>
                        <Button variant="outline" size="sm" className="h-8 text-destructive hover:text-destructive hover:bg-destructive/10">Disable</Button>
                      </div>

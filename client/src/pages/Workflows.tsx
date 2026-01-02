@@ -49,14 +49,40 @@ export default function Workflows() {
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {workflow.date}</span>
                     <span className="flex items-center gap-1"><BotIcon className="h-3 w-3" /> {workflow.agent}</span>
+                    {/* Expiration Logic - Mocking urgency if 'Renewal' is in name */}
+                    {workflow.name.includes("Renewal") && (
+                       <Badge variant="secondary" className="bg-red-500/10 text-red-500 border-red-500/20 text-[10px] h-5">URGENT: Expiring</Badge>
+                    )}
                   </div>
                 </div>
 
-                {/* Approvals Grid */}
-                <div className="col-span-5 flex items-center gap-8">
-                   <ApprovalStatus label="Legal" status={workflow.approvals.legal} />
-                   <ApprovalStatus label="Finance" status={workflow.approvals.finance} />
-                   <ApprovalStatus label="Security" status={workflow.approvals.security} />
+                {/* Approvals Grid -> Replaced with Orchestration Stepper */}
+                <div className="col-span-5 flex flex-col justify-center">
+                   <div className="flex items-center justify-between text-[10px] uppercase text-muted-foreground mb-1.5 px-1">
+                     <span>Maestro Progress</span>
+                     <span>Step 3 of 4</span>
+                   </div>
+                   <div className="flex items-center gap-1 w-full">
+                      {['Identity', 'Legal Review', 'Finance', 'Signature'].map((step, idx) => {
+                         // Mock logic for progress based on workflow status
+                         const isCompleted = workflow.status === 'Completed' || (workflow.status === 'In Progress' && idx < 2);
+                         const isCurrent = workflow.status === 'In Progress' && idx === 2;
+                         
+                         return (
+                           <div key={idx} className="flex-1 flex flex-col gap-1">
+                             <div className={cn("h-1.5 rounded-full w-full", 
+                               isCompleted ? "bg-emerald-500" : 
+                               isCurrent ? "bg-blue-500 animate-pulse" : 
+                               "bg-sidebar-accent"
+                             )} />
+                           </div>
+                         )
+                      })}
+                   </div>
+                   <div className="flex justify-between text-[10px] text-muted-foreground mt-1 px-1">
+                     <span>Identity</span>
+                     <span>Signature</span>
+                   </div>
                 </div>
                 
                 {/* Actions */}

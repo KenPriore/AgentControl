@@ -143,10 +143,10 @@ export const approvalRequests: ApprovalRequest[] = [
 import { Box } from "lucide-react"; // Import Box separately as it was missing
 
 export const iamMetrics = {
-  agreementCount: { current: 12450, entitlement: 15000 },
+  agreementCount: { current: 142, entitlement: 200 }, // Managed vs Seat Allowance
   seatAllowance: { active: 142, total: 200 },
   navigatorIndex: 98.4,
-  orchestrationSteps: 14
+  orchestrationSteps: 7 // My Active Maestro Steps
 };
 
 export const connectorHealth = [

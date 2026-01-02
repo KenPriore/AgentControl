@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { approvalRequests } from "@/lib/legalData";
-import { CheckCircle2, Clock, FileText, XCircle, Filter, MinusCircle, User, ChevronRight, MoreHorizontal } from "lucide-react";
+import { CheckCircle2, Clock, FileText, XCircle, Filter, MinusCircle, User, ChevronRight, MoreHorizontal, GitGraph } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
@@ -24,6 +24,19 @@ export default function Approvals() {
       </div>
 
       <div className="grid grid-cols-1 gap-8">
+        {/* Bottleneck Alert Banner */}
+        <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 flex items-start gap-3">
+           <div className="p-2 bg-amber-500/20 rounded-full text-amber-500">
+             <Clock className="h-5 w-5" />
+           </div>
+           <div>
+             <h3 className="text-sm font-semibold text-amber-600 dark:text-amber-400">Cross-Functional Bottleneck Detected</h3>
+             <p className="text-xs text-muted-foreground mt-1">
+               2 Agreements are awaiting Finance approval for &gt; 48 hours, exceeding internal SLA. <span className="underline cursor-pointer hover:text-foreground">View details</span>.
+             </p>
+           </div>
+        </div>
+
         {approvalRequests.map((req) => {
           const approvedCount = req.teams.filter(t => t.status === 'Approved').length;
           const requiredCount = req.teams.filter(t => t.status !== 'Not Required').length;
@@ -67,6 +80,16 @@ export default function Approvals() {
                      <Button variant="ghost" size="icon"><MoreHorizontal className="h-4 w-4" /></Button>
                    </div>
                  </div>
+
+                 {/* Maestro Branching Indicator */}
+                 {req.contractType.includes("Exception") && (
+                   <div className="px-6 pb-2">
+                     <div className="flex items-center gap-2 text-xs text-purple-500 bg-purple-500/5 border border-purple-500/20 rounded-md px-3 py-1.5 w-fit">
+                       <GitGraph className="h-3 w-3" />
+                       <span className="font-medium">Maestro Branch Active:</span> Product Exception Request Workflow
+                     </div>
+                   </div>
+                 )}
 
                  {/* Progress Bar */}
                  <div className="flex items-center gap-4">

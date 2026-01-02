@@ -1,0 +1,86 @@
+Plaintext
+
+In the Replit project, perform the following global updates:
+1. Rename the application from "Counsel Copilot" to "Counsel Nexus".
+2. In the Sidebar/Navigation:
+   - Change "Mission Control" to "Nexus Command".
+   - Change "HITL Queue" to "Attorney Action Queue".
+3. Update all page headers to reflect the new brand "Counsel Nexus".
+Page-by-Page Attorney Suggestions
+1. Nexus Command (The Main Hub)
+
+Metric Shift: Change "Pending Finance Approvals" to "My Active Maestro Steps" to track specific tasks assigned to you in a larger workflow.
+
+
+
+Entitlement View: Replace total "IAM Agreement Count" with "My Managed Agreements" (count of files where you are the primary owner) against your allocated "Seat Allowance".
+
+
+
+
+
+Navigator Health: Add a widget for "Navigator Indexing Status" showing the percentage of your personal archive that has been successfully indexed for search and metadata extraction.
+
+
+
+Interoperability Status: Show connection health for your personal most-used tools (e.g., Salesforce, Workday).
+
+
+2. Clause Intelligence
+
+Playbook Personalization: Allow the attorney to toggle between "Standard MSA Playbook" and "Custom Client Playbooks" to see how agents are identifying deviations for specific clients.
+
+
+Drafting Confidence: Add a "Hallucination Shield" alert that flags any agent-generated text with a confidence score below 95% for manual review.
+
+
+3. Workflow History
+
+Orchestration Steppers: For each entry, add a visual progress bar of the Maestro Workflow steps (e.g., Identity Verification -> Legal Review -> Signature).
+
+
+
+
+Status Badging: Use Docusign Navigator metadata to automatically tag agreements as "Urgent" if the expiration date is within 30 days.
+
+
+4. Agent Monitor
+
+Data Access Transparency: For each agent (e.g., Navigator Guardian), list the specific "IAM Agreements" it accessed and what data it extracted (e.g., "Extracted Liability Cap from Project X").
+
+
+
+
+Reasoning Chains: Instead of just "Active," show the agent's current "Thought Process" (e.g., "Scanning 50 legacy NDAs to find inconsistent Governing Law clauses").
+
+5. Stakeholder Approvals
+Cross-Functional Bottleneck Alert: Highlight if an agreement is stuck in another department (e.g., Finance or Security) for longer than the internal SLA.
+
+
+Maestro Branching: Show if a workflow has "branched" into a Product Exception Request based on a specific clause deviation.
+
+
+6. Traceability & Audit Center
+
+Certification of Action: Add a button to "Export Agent Certification"—a signed PDF summary of every autonomous step and validation check an agent performed for a specific contract.
+
+
+
+Boundary Verification: For government work, include a "FedRAMP Boundary Check" status to confirm all data processing remained within the authorized environment.
+
+
+7. Agent Composition
+
+Prompt Recipe Editor: Allow attorneys to update the "Instructions" for their personal assistants (e.g., "Always prioritize New York law over Delaware law for this specific vendor category").
+
+
+
+Tool Injection: Let attorneys "drag and drop" new data sources, like a specific set of Navigator search results, into an agent's knowledge base.
+
+
+8. Attorney Action Queue (Formerly HITL)
+
+Decision Priority: Rank items by "Risk Impact" (e.g., a $1M contract deviation is ranked higher than a formatting check).
+
+
+Trust Building: Add a "Trust & Deploy" button for recurring minor exceptions, which tells the agent to handle similar cases autonomously in the future.

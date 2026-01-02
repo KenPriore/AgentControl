@@ -48,7 +48,7 @@ function Sidebar() {
           <ShieldCheck className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <h1 className="font-bold text-sidebar-foreground tracking-tight leading-none">COUNSEL COPILOT</h1>
+          <h1 className="font-bold text-sidebar-foreground tracking-tight leading-none">COUNSEL NEXUS</h1>
           <p className="text-[10px] text-muted-foreground font-mono tracking-widest uppercase mt-0.5">Legal OS v2.0</p>
         </div>
       </div>
@@ -56,7 +56,7 @@ function Sidebar() {
       <nav className="flex-1">
         <div className="mb-4">
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Oversight</p>
-          <NavLink href="/" icon={LayoutDashboard}>Mission Control</NavLink>
+          <NavLink href="/" icon={LayoutDashboard}>Nexus Command</NavLink>
           <NavLink href="/claims-analytics" icon={Scale}>Clause Intelligence</NavLink>
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
           <NavLink href="/agent-monitor" icon={Activity}>Agent Monitor</NavLink>
@@ -67,7 +67,7 @@ function Sidebar() {
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Operations</p>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
           <NavLink href="/agents" icon={Bot}>Agent Composition</NavLink>
-          <NavLink href="/inbox" icon={InboxIcon}>HITL Queue</NavLink>
+          <NavLink href="/inbox" icon={InboxIcon}>Attorney Action Queue</NavLink>
         </div>
 
         <div className="mb-4">

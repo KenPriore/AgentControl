@@ -42,7 +42,7 @@ export default function Traceability() {
       type: "processing",
       details: {
         input: "Entity: Nexus Systems Inc.\nJurisdiction: US-CA",
-        output: "OFAC Screen: CLEAR\nExport Control: CLEAR",
+        output: "OFAC Screen: CLEAR\nExport Control: CLEAR\nFedRAMP Boundary: VERIFIED (Data Resident in US-East)",
         validationErrors: []
       }
     },

@@ -4,6 +4,9 @@ import { cn } from "@/lib/utils";
 import { AlertTriangle, BookOpen, CheckCircle2, ClipboardCheck, FileWarning, Scale, UserCheck, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ShieldAlert } from "lucide-react";
 
 // --- Mock Data ---
 
@@ -33,8 +36,6 @@ const reviewQueue = [
   { id: "CLM-9935", type: "Fact Check", desc: "Date mismatch in Exhibit A", confidence: "Low", status: "Needs Review", time: "3h ago" },
 ];
 
-// --- Components ---
-
 export default function ClaimsAnalytics() {
   return (
     <div className="flex flex-col gap-6 max-w-[1600px] mx-auto p-6 bg-slate-50 text-slate-900 min-h-screen">
@@ -53,110 +54,135 @@ export default function ClaimsAnalytics() {
         </div>
       </div>
 
-      {/* Top Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* Chart 1: Playbook Deviations */}
-        <ChartCard 
-          title="Playbook Adherence" 
-          subtitle="Claims vs. Internal Playbooks"
-          data={playbookData}
-          total={65}
-          alertCount={12}
-          icon={BookOpen}
-          color="blue"
-        />
+      <Tabs defaultValue="standard" className="w-full">
+        <TabsList className="bg-white border border-slate-200">
+          <TabsTrigger value="standard">Standard MSA Playbook</TabsTrigger>
+          <TabsTrigger value="custom">Custom Client Playbooks</TabsTrigger>
+        </TabsList>
 
-        {/* Chart 2: Standards Compliance */}
-        <ChartCard 
-          title="Standards Compliance" 
-          subtitle="Regulatory & Industry Standards"
-          data={standardsData}
-          total={100}
-          alertCount={5}
-          icon={Scale}
-          color="emerald"
-        />
+        <div className="mt-4">
+          <Alert variant="destructive" className="bg-red-50 border-red-200 text-red-900 mb-6">
+            <ShieldAlert className="h-4 w-4 text-red-600" />
+            <AlertTitle className="text-red-900 font-semibold">Hallucination Shield Active</AlertTitle>
+            <AlertDescription className="text-red-800">
+              3 generated clauses flagged with confidence score &lt; 95%. Manual review required before export.
+            </AlertDescription>
+          </Alert>
+        </div>
 
-        {/* Chart 3: Fact Check Errors */}
-        <ChartCard 
-          title="Clause Generation" 
-          subtitle="Accuracy & Hallucination Check"
-          data={factCheckData}
-          total={178}
-          alertCount={22}
-          icon={ClipboardCheck}
-          color="amber"
-        />
-      </div>
+        <TabsContent value="standard" className="mt-0 space-y-6">
+          {/* Top Charts Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            {/* Chart 1: Playbook Deviations */}
+            <ChartCard 
+              title="Playbook Adherence" 
+              subtitle="Claims vs. Internal Playbooks"
+              data={playbookData}
+              total={65}
+              alertCount={12}
+              icon={BookOpen}
+              color="blue"
+            />
 
-      {/* Tables Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-         
-         {/* Table 1: Playbook Gaps */}
-         <DetailTable 
-           title="Playbook Gaps Detected" 
-           icon={FileWarning}
-           rows={[
-             { label: "Indemnity Cap Exceeded", count: 8, severity: "High" },
-             { label: "Governing Law Mismatch", count: 3, severity: "Med" },
-             { label: "Payment Terms Deviation", count: 1, severity: "Low" },
-           ]}
-         />
+            {/* Chart 2: Standards Compliance */}
+            <ChartCard 
+              title="Standards Compliance" 
+              subtitle="Regulatory & Industry Standards"
+              data={standardsData}
+              total={100}
+              alertCount={5}
+              icon={Scale}
+              color="emerald"
+            />
 
-         {/* Table 2: Standards Violations */}
-         <DetailTable 
-           title="Standards Violations" 
-           icon={AlertTriangle}
-           rows={[
-             { label: "GDPR Data Transfer", count: 2, severity: "Critical" },
-             { label: "ISO 27001 Control", count: 3, severity: "Med" },
-             { label: "CCPA Opt-Out Missing", count: 0, severity: "Low" },
-           ]}
-         />
+            {/* Chart 3: Fact Check Errors */}
+            <ChartCard 
+              title="Clause Generation" 
+              subtitle="Accuracy & Hallucination Check"
+              data={factCheckData}
+              total={178}
+              alertCount={22}
+              icon={ClipboardCheck}
+              color="amber"
+            />
+          </div>
 
-         {/* Table 3: Human Review Queue (The "Ask for Human" Section) */}
-         <Card className="border-slate-200 bg-white shadow-lg flex flex-col h-full">
-            <CardHeader className="pb-3 border-b border-slate-200">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-slate-900 flex items-center gap-2">
-                  <UserCheck className="h-4 w-4 text-purple-600" />
-                  Attorney Approval Required
-                </CardTitle>
-                <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/20">
-                  5 Actions
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0">
-               <div className="divide-y divide-slate-200">
-                 {reviewQueue.map((item) => (
-                   <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors group cursor-pointer">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="font-mono text-[10px] text-slate-500">{item.id}</span>
-                        <span className="text-[10px] text-slate-400">{item.time}</span>
-                      </div>
-                      <div className="flex justify-between items-start gap-4">
-                         <div>
-                            <p className="text-sm font-medium text-slate-900 group-hover:text-purple-600 transition-colors">{item.desc}</p>
-                            <p className="text-xs text-slate-500 mt-0.5">{item.type}</p>
-                         </div>
-                         <Button size="sm" variant="outline" className="h-7 text-xs border-slate-200 bg-white hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200">
-                           Review
-                         </Button>
-                      </div>
+          {/* Tables Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+             
+             {/* Table 1: Playbook Gaps */}
+             <DetailTable 
+               title="Playbook Gaps Detected" 
+               icon={FileWarning}
+               rows={[
+                 { label: "Indemnity Cap Exceeded", count: 8, severity: "High" },
+                 { label: "Governing Law Mismatch", count: 3, severity: "Med" },
+                 { label: "Payment Terms Deviation", count: 1, severity: "Low" },
+               ]}
+             />
+
+             {/* Table 2: Standards Violations */}
+             <DetailTable 
+               title="Standards Violations" 
+               icon={AlertTriangle}
+               rows={[
+                 { label: "GDPR Data Transfer", count: 2, severity: "Critical" },
+                 { label: "ISO 27001 Control", count: 3, severity: "Med" },
+                 { label: "CCPA Opt-Out Missing", count: 0, severity: "Low" },
+               ]}
+             />
+
+             {/* Table 3: Human Review Queue (The "Ask for Human" Section) */}
+             <Card className="border-slate-200 bg-white shadow-lg flex flex-col h-full">
+                <CardHeader className="pb-3 border-b border-slate-200">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-sm font-medium text-slate-900 flex items-center gap-2">
+                      <UserCheck className="h-4 w-4 text-purple-600" />
+                      Attorney Approval Required
+                    </CardTitle>
+                    <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/20">
+                      5 Actions
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                   <div className="divide-y divide-slate-200">
+                     {reviewQueue.map((item) => (
+                       <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors group cursor-pointer">
+                          <div className="flex justify-between items-start mb-1">
+                            <span className="font-mono text-[10px] text-slate-500">{item.id}</span>
+                            <span className="text-[10px] text-slate-400">{item.time}</span>
+                          </div>
+                          <div className="flex justify-between items-start gap-4">
+                             <div>
+                                <p className="text-sm font-medium text-slate-900 group-hover:text-purple-600 transition-colors">{item.desc}</p>
+                                <p className="text-xs text-slate-500 mt-0.5">{item.type}</p>
+                             </div>
+                             <Button size="sm" variant="outline" className="h-7 text-xs border-slate-200 bg-white hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200">
+                               Review
+                             </Button>
+                          </div>
+                       </div>
+                     ))}
                    </div>
-                 ))}
-               </div>
-               <div className="p-3 border-t border-slate-200 text-center">
-                 <Button variant="ghost" className="text-xs text-slate-500 hover:text-slate-900 w-full h-8">
-                   View Full Queue
-                 </Button>
-               </div>
-            </CardContent>
-         </Card>
+                   <div className="p-3 border-t border-slate-200 text-center">
+                     <Button variant="ghost" className="text-xs text-slate-500 hover:text-slate-900 w-full h-8">
+                       View Full Queue
+                     </Button>
+                   </div>
+                </CardContent>
+             </Card>
 
-      </div>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="custom" className="mt-6">
+          <div className="flex items-center justify-center h-64 border-2 border-dashed border-slate-200 rounded-lg">
+             <p className="text-slate-500">Select a client to view custom playbook analytics.</p>
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

@@ -197,8 +197,8 @@ export default function AgentMonitor() {
               <TableRow>
                 <TableHead>Agent Name</TableHead>
                 <TableHead>Current Task</TableHead>
-                <TableHead>Data Sources Accessed</TableHead>
-                <TableHead>Key Decision / Logic</TableHead>
+                <TableHead>IAM Agreements Accessed</TableHead>
+                <TableHead>Thought Process</TableHead>
                 <TableHead className="text-right">Timestamp</TableHead>
               </TableRow>
             </TableHeader>
@@ -211,12 +211,16 @@ export default function AgentMonitor() {
                     <div className="flex flex-wrap gap-1">
                       {log.dataSources.map((source, i) => (
                         <Badge key={i} variant="outline" className="text-[10px] bg-background text-muted-foreground border-border">
+                          {source.includes(".pdf") || source.includes("Agreement") ? <FileText className="h-3 w-3 mr-1" /> : <Database className="h-3 w-3 mr-1" />}
                           {source}
                         </Badge>
                       ))}
                     </div>
                   </TableCell>
-                  <TableCell className="text-sm text-muted-foreground italic">"{log.decisionLogic}"</TableCell>
+                  <TableCell className="text-sm text-muted-foreground italic font-mono text-[11px]">
+                     <span className="text-primary font-bold not-italic mr-2">REASONING:</span>
+                     "{log.decisionLogic}"
+                  </TableCell>
                   <TableCell className="text-right font-mono text-xs text-muted-foreground">{log.timestamp}</TableCell>
                 </TableRow>
               ))}
