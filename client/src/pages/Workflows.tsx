@@ -63,7 +63,7 @@ export default function Workflows() {
                      <span>Step 3 of 4</span>
                    </div>
                    <div className="flex items-center gap-1 w-full">
-                      {['Identity', 'Legal Review', 'Finance', 'Signature'].map((step, idx) => {
+                      {['Submitted', 'Legal Review', 'Finance', 'Signature'].map((step, idx) => {
                          // Mock logic for progress based on workflow status
                          const isCompleted = workflow.status === 'Completed' || (workflow.status === 'In Progress' && idx < 2);
                          const isCurrent = workflow.status === 'In Progress' && idx === 2;
@@ -80,7 +80,7 @@ export default function Workflows() {
                       })}
                    </div>
                    <div className="flex justify-between text-[10px] text-muted-foreground mt-1 px-1">
-                     <span>Identity</span>
+                     <span>Submitted</span>
                      <span>Signature</span>
                    </div>
                 </div>
