@@ -28,7 +28,7 @@ export default function Dashboard() {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <KpiCard 
           title="Pending Orchestration Steps" 
           value={iamMetrics.orchestrationSteps}
@@ -52,14 +52,6 @@ export default function Dashboard() {
           trendType="positive"
           icon={Search}
           description="Navigator Documents Indexed"
-        />
-        <KpiCard 
-          title="Seat Allowance" 
-          value={`${iamMetrics.seatAllowance.active} / ${iamMetrics.seatAllowance.total}`}
-          trend={`${iamMetrics.seatAllowance.total - iamMetrics.seatAllowance.active} left`}
-          trendType="positive"
-          icon={Users}
-          description="Active vs Provisioned Users"
         />
       </div>
 
