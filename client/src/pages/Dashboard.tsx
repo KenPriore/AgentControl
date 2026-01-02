@@ -14,7 +14,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Intelligence Desk</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Orchestrator Oversight</h1>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
