@@ -80,7 +80,7 @@ export default function Traceability() {
           <p className="text-muted-foreground mt-1">Deep inspection of agent reasoning chains and workflow execution.</p>
         </div>
         <Button variant="outline" className="gap-2">
-          <Download className="h-4 w-4" /> Export Defensibility Report
+          <Download className="h-4 w-4" /> Export Agent Certification of Action
         </Button>
       </div>
 
