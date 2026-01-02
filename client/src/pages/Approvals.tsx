@@ -24,19 +24,6 @@ export default function Approvals() {
       </div>
 
       <div className="grid grid-cols-1 gap-8">
-        {/* Bottleneck Alert Banner */}
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 flex items-start gap-3">
-           <div className="p-2 bg-amber-500/20 rounded-full text-amber-500">
-             <Clock className="h-5 w-5" />
-           </div>
-           <div>
-             <h3 className="text-sm font-semibold text-amber-600 dark:text-amber-400">Cross-Functional Bottleneck Detected</h3>
-             <p className="text-xs text-muted-foreground mt-1">
-               2 Agreements are awaiting Finance approval for &gt; 48 hours, exceeding internal SLA. <span className="underline cursor-pointer hover:text-foreground">View details</span>.
-             </p>
-           </div>
-        </div>
-
         {approvalRequests.map((req) => {
           const approvedCount = req.teams.filter(t => t.status === 'Approved').length;
           const requiredCount = req.teams.filter(t => t.status !== 'Not Required').length;
