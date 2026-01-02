@@ -64,13 +64,13 @@ export default function Dashboard() {
       </div>
 
       {/* Activity Chart Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2 border-sidebar-border bg-card/50">
+      <div className="grid grid-cols-1 gap-6">
+        <Card className="border-sidebar-border bg-card/50">
           <CardHeader>
             <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Policy Exception Frequency</CardTitle>
             <CardDescription className="text-xs">Volume by exception type to refine standard playbooks</CardDescription>
           </CardHeader>
-          <CardContent className="h-[200px]">
+          <CardContent className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={policyExceptionData}>
                 <XAxis 
@@ -100,32 +100,6 @@ export default function Dashboard() {
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
-        </Card>
-        
-        <Card className="border-sidebar-border bg-card/50">
-           <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">IAM Service Schedule Alignment</CardTitle>
-           </CardHeader>
-           <CardContent className="flex flex-col justify-center items-center h-[200px]">
-              <div className="relative h-32 w-32 flex items-center justify-center">
-                 <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
-                   <circle cx="50" cy="50" r="40" fill="none" stroke="#1e293b" strokeWidth="10" />
-                   <circle 
-                      cx="50" cy="50" r="40" 
-                      fill="none" 
-                      stroke="#10b981" 
-                      strokeWidth="10" 
-                      strokeDasharray="251.2" 
-                      strokeDashoffset="25.12" 
-                      strokeLinecap="round"
-                   />
-                 </svg>
-                 <div className="absolute flex flex-col items-center">
-                    <span className="text-2xl font-bold">90%</span>
-                    <span className="text-[10px] text-muted-foreground uppercase">Compliant</span>
-                 </div>
-              </div>
-           </CardContent>
         </Card>
       </div>
 
