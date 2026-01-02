@@ -1,0 +1,49 @@
+Project Goal: Build a "Legal AI Operations & Governance Dashboard" designed for legal and product teams. The platform must manage the "Real Alpha" of AI: the composition of autonomous agents and structured, traceable workflows.
+
+Conceptual Framework to Implement:
+
+Agents (The Power): Represented as autonomous, stateful actors with memory (turn-based interaction).
+
+Workflows (The Control): Represented as composable, deterministic pipelines that handle error validation and dependency chains (Step A must finish before Step B).
+
+Legal Priority: Traceability is 10x more important than in standard software. Every non-deterministic output must be auditable.
+
+Technical Stack: Next.js (App Router), Tailwind CSS, Shadcn UI, Lucide Icons, and Recharts.
+
+Core Views & Features:
+
+1. Unified Oversight Dashboard:
+
+System Health: A "Honeycomb" grid showing all active Legal Agents (e.g., "Research Agent," "Privilege Reviewer"). Distinguish between "Autonomous Mode" (Agent) and "Structured Mode" (Workflow).
+
+KPIs: Success rate of automated privilege claims, total token spend, and "Human Intervention Rate."
+
+Live "Thought" Stream: A terminal-style feed showing agent reasoning paths in a "turn-based" format: User Move -> Agent Reasoning -> Tool Call -> Result.
+
+2. Traceability & Audit Center (The "Legal Notebook"):
+
+Workflow Visualizer: A vertical, "fluent syntax" view (top-to-bottom) of active pipelines. Avoid complex graphs; ensure the logic is "grockable" for non-engineers.
+
+Step-Level Inspection: Clicking a workflow step reveals: Input -> Secondary Validation -> LLM Output -> Error Handling status.
+
+Audit Trail Generator: A button to export a "Defensibility Report" showing the exact reasoning chain for any specific document review.
+
+3. Composition & Tool Management:
+
+Dynamic Tool Injection UI: A panel to manage which tools are assigned to agents. Limit tool count to prevent performance degradation.
+
+Agent-in-Workflow view: Visualize an Agent being used as a single step within a larger, reliable workflow (e.g., a "Contract Extraction" workflow that calls a "Summarization Agent" at step 3).
+
+Large Document Handling: A progress view for workflows designed to break down giant PDFs into smaller, structured sub-tasks for reliability.
+
+4. Human-in-the-Loop (HITL) Queue:
+
+A "High-Risk" inbox where agents pause for approval before executing "Power" actions (e.g., finalizing a court filing). Include "Approve," "Reject," and "Correct Reasoning" buttons.
+
+Functional Requirements:
+
+Mock Data: Create a legalData.ts file simulating a discovery review where an agent "hallucinates" a privilege claim, triggered by a workflow validation error to show how the system catches it.
+
+Styling: Professional "Legal-Tech" aesthetic. Dark mode by default with "Slate" and "Emerald" accents. Use consistent status indicators: Blue (Agent Autonomy), Purple (Workflow Structure).
+
+Instructions for Replit Agent: Please scaffold this as a full-stack Next.js application. Prioritize the "Traceability" view—ensure that the code logs are readable and follow a linear, top-to-bottom logic so a Legal Persona can understand the system's "tech tree" without needing to know graph theory.
