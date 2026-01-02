@@ -128,7 +128,7 @@ export default function AgentMonitor() {
             </CardTitle>
             <CardDescription className="text-xs">Autonomous vs. Human-in-the-Loop (Maestro & Agents)</CardDescription>
           </CardHeader>
-          <CardContent className="flex items-center justify-center h-[200px]">
+          <CardContent className="relative flex items-center justify-center h-[200px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -151,7 +151,7 @@ export default function AgentMonitor() {
                 <Legend verticalAlign="bottom" height={36} iconType="circle" />
               </PieChart>
             </ResponsiveContainer>
-            <div className="absolute text-center pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none pb-8">
               <span className="text-3xl font-bold text-slate-900">85%</span>
               <p className="text-[10px] text-muted-foreground uppercase">Autonomous</p>
             </div>
