@@ -1,3 +1,4 @@
+import VendorDashboard from "@/pages/VendorDashboard";
 import { Switch, Route, Link, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -9,7 +10,7 @@ import Dashboard from "@/pages/Dashboard";
 import Traceability from "@/pages/Traceability";
 import Agents from "@/pages/Agents";
 import Inbox from "@/pages/Inbox";
-import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck } from "lucide-react";
+import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -52,6 +53,7 @@ function Sidebar() {
         <div className="mb-4">
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Oversight</p>
           <NavLink href="/" icon={LayoutDashboard}>Mission Control</NavLink>
+          <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
         </div>
         
@@ -118,6 +120,7 @@ function Router() {
     <Layout>
       <Switch>
         <Route path="/" component={Dashboard} />
+        <Route path="/vendor-analytics" component={VendorDashboard} />
         <Route path="/traceability" component={Traceability} />
         <Route path="/agents" component={Agents} />
         <Route path="/inbox" component={Inbox} />
