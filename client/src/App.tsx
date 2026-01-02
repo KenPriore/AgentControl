@@ -10,9 +10,10 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/Dashboard";
 import Traceability from "@/pages/Traceability";
 import Agents from "@/pages/Agents";
+import Approvals from "@/pages/Approvals";
 import Workflows from "@/pages/Workflows";
 import Inbox from "@/pages/Inbox";
-import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale, GitGraph } from "lucide-react";
+import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale, GitGraph, CheckSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -58,6 +59,7 @@ function Sidebar() {
           <NavLink href="/claims-analytics" icon={Scale}>Claims Intelligence</NavLink>
           <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
+          <NavLink href="/approvals" icon={CheckSquare}>Stakeholder Approvals</NavLink>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
         </div>
         
@@ -129,6 +131,7 @@ function Router() {
         <Route path="/traceability" component={Traceability} />
         <Route path="/agents" component={Agents} />
         <Route path="/workflows" component={Workflows} />
+        <Route path="/approvals" component={Approvals} />
         <Route path="/inbox" component={Inbox} />
         <Route component={NotFound} />
       </Switch>

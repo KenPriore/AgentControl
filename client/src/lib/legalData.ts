@@ -1,4 +1,4 @@
-import { LucideIcon, Shield, Search, FileText, Scale, Zap, AlertTriangle, CheckCircle, Brain, Gavel, FileCheck, Users, GitMerge } from "lucide-react";
+import { LucideIcon, Shield, Search, FileText, Scale, Zap, AlertTriangle, CheckCircle, Brain, Gavel, FileCheck, Users, GitMerge, UserCheck, Lock, Eye, BarChart } from "lucide-react";
 
 export interface LogStep {
   id: string;
@@ -35,6 +35,78 @@ export interface Agent {
     tokensUsed: number;
   };
 }
+
+export interface ApprovalRequest {
+  id: string;
+  contractName: string;
+  contractType: string;
+  requester: string;
+  date: string;
+  status: "Pending" | "Approved" | "Rejected";
+  teams: {
+    name: string;
+    status: "Pending" | "Approved" | "Rejected" | "Not Required";
+    approver?: string;
+    comment?: string;
+    icon: LucideIcon;
+  }[];
+}
+
+export const approvalRequests: ApprovalRequest[] = [
+  {
+    id: "REQ-2024-882",
+    contractName: "Vertex AI Partnership Agreement",
+    contractType: "Partnership Agreement",
+    requester: "Sarah Chen (Product VP)",
+    date: "Today, 09:30 AM",
+    status: "Pending",
+    teams: [
+      { name: "Legal", status: "Approved", approver: "Jane Doe", icon: Scale },
+      { name: "Finance", status: "Pending", icon: BarChart },
+      { name: "Security", status: "Approved", approver: "Mike Ross", icon: Lock },
+      { name: "Privacy", status: "Approved", approver: "Jessica Pearson", icon: Eye },
+      { name: "Product", status: "Approved", approver: "Sarah Chen", icon: Box },
+      { name: "Partners", status: "Pending", icon: Users },
+      { name: "Sales Ops", status: "Not Required", icon: FileCheck },
+    ]
+  },
+  {
+    id: "REQ-2024-885",
+    contractName: "Cloud Infrastructure Renewal - AWS",
+    contractType: "Vendor Agreement",
+    requester: "David Kim (CTO)",
+    date: "Yesterday, 4:15 PM",
+    status: "Pending",
+    teams: [
+      { name: "Legal", status: "Approved", approver: "Harvey Specter", icon: Scale },
+      { name: "Finance", status: "Rejected", approver: "Louis Litt", comment: "Budget cap exceeded by 15%", icon: BarChart },
+      { name: "Security", status: "Approved", approver: "Mike Ross", icon: Lock },
+      { name: "Privacy", status: "Not Required", icon: Eye },
+      { name: "Product", status: "Not Required", icon: Box },
+      { name: "Partners", status: "Not Required", icon: Users },
+      { name: "Sales Ops", status: "Not Required", icon: FileCheck },
+    ]
+  },
+  {
+    id: "REQ-2024-891",
+    contractName: "Enterprise License - MegaCorp",
+    contractType: "MSA + Order Form",
+    requester: "Rachel Zane (Sales Dir)",
+    date: "Today, 11:00 AM",
+    status: "Pending",
+    teams: [
+      { name: "Legal", status: "Pending", icon: Scale },
+      { name: "Finance", status: "Pending", icon: BarChart },
+      { name: "Security", status: "Not Required", icon: Lock },
+      { name: "Privacy", status: "Not Required", icon: Eye },
+      { name: "Product", status: "Not Required", icon: Box },
+      { name: "Partners", status: "Not Required", icon: Users },
+      { name: "Sales Ops", status: "Approved", approver: "Donna Paulsen", icon: FileCheck },
+    ]
+  }
+];
+
+import { Box } from "lucide-react"; // Import Box separately as it was missing
 
 export const activeAgents: Agent[] = [
   {
