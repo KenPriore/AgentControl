@@ -1,3 +1,4 @@
+import AgentMonitor from "@/pages/AgentMonitor";
 import ClaimsAnalytics from "@/pages/ClaimsAnalytics";
 import VendorDashboard from "@/pages/VendorDashboard";
 import { Switch, Route, Link, useLocation } from "wouter";
@@ -13,7 +14,7 @@ import Agents from "@/pages/Agents";
 import Approvals from "@/pages/Approvals";
 import Workflows from "@/pages/Workflows";
 import Inbox from "@/pages/Inbox";
-import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale, GitGraph, CheckSquare } from "lucide-react";
+import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale, GitGraph, CheckSquare, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -58,6 +59,7 @@ function Sidebar() {
           <NavLink href="/" icon={LayoutDashboard}>Mission Control</NavLink>
           <NavLink href="/claims-analytics" icon={Scale}>Claims Intelligence</NavLink>
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
+          <NavLink href="/agent-monitor" icon={Activity}>Agent Monitor</NavLink>
           <NavLink href="/approvals" icon={CheckSquare}>Stakeholder Approvals</NavLink>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
         </div>
@@ -135,6 +137,7 @@ function Router() {
         <Route path="/traceability" component={Traceability} />
         <Route path="/agents" component={Agents} />
         <Route path="/workflows" component={Workflows} />
+        <Route path="/agent-monitor" component={AgentMonitor} />
         <Route path="/approvals" component={Approvals} />
         <Route path="/inbox" component={Inbox} />
         <Route component={NotFound} />

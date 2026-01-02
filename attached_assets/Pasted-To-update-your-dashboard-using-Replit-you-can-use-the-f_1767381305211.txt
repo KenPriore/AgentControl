@@ -1,0 +1,103 @@
+To update your dashboard using **Replit**, you can use the following prompt to modify your code and implement the new **Agent Monitor** view.
+
+### 1. Replit Prompt
+
+> "In the sidebar component, add a new navigation link labeled '**Agent Monitor**' directly below 'Workflow History'. Create a corresponding page that visualizes real-time AI agent performance. The page should include:
+> 1. A summary section for **Autonomous Decisions** and **Human Handoffs**.
+> 2. A data table showing 'Agent Name', 'Task', 'Data Sources Accessed', and 'Decision Logic'.
+> 3. A dedicated 'Exception & Oversight' feed highlighting cases where agents triggered a **Human-in-the-Loop (HITL)** review due to policy or compliance conflicts."
+> 
+> 
+
+---
+
+### 2. Proposed "Agent Monitor" Page Content
+
+This page provides transparency into how your agents are interacting with the **Docusign IAM** platform and where they are encountering friction that requires human intervention.
+
+#### **A. Agent Activity Overview**
+
+* 
+**Decision Distribution:** A chart comparing purely autonomous steps taken by **Docusign Maestro** against steps requiring manual approval.
+
+
+* 
+**Data Access Heatmap:** Visualizes which internal systems (Navigator, Salesforce, FedRAMP Boundary) are being queried most frequently.
+
+
+
+#### **B. Agent Intelligence & Data Access Log**
+
+This log tracks the specific logic applied to "IAM Agreements" and the connectors utilized.
+
+| Agent Name | Current Task | Data Sources Accessed | Key Decision/Logic |
+| --- | --- | --- | --- |
+| **Clause Architect** | NDA Redlining | MSA Playbook, Docusign Navigator 
+
+ | Accepted standard Indemnity language; flagged custom Liability Cap. |
+| **Policy Guardian** | Compliance Audit | FedRAMP Moderate Boundary 
+
+ | Verified no sensitive Customer Data was exported to unapproved connectors.
+
+ |
+| **Risk Scout** | Overage Monitoring | IAM Order Form, Seat Allowance 
+
+ | Identified 95% Seat utilization; alerted Sales Ops for potential overage.
+
+ |
+
+---
+
+#### **C. Oversight: Policy Exceptions for Human Review**
+
+Based on the **Docusign IAM Service Schedule**, these represent critical points where an agent cannot make an autonomous decision:
+
+* **Instance 1: PII in Sandbox (Security & Privacy)**
+* 
+**Agent Logic:** **Sandbox Data Guard** scanned a file in a demo account and detected Personally Identifiable Information.
+
+
+* 
+**Policy Conflict:** The Service Schedule explicitly prohibits PII in Sandbox Accounts.
+
+
+* 
+**Action:** Agent blocked the upload and created an exception for the **Security and Privacy** team.
+
+
+
+
+* **Instance 2: FedRAMP Boundary Export (Compliance)**
+* 
+**Agent Logic:** A workflow attempted to use a "Connector" to export data to a third-party service.
+
+
+* 
+**Policy Conflict:** Customer authorizes Docusign to export data, but Docusign disclaims liability once data leaves the FedRAMP boundary.
+
+
+* 
+**Action:** Agent halted the export for a **Global Compliance** sign-off to acknowledge the boundary transition.
+
+
+
+
+* **Instance 3: Feature Count Exceedance (Sales Operations)**
+* 
+**Agent Logic:** A user attempted to activate a specific "Feature" not included in the current "Docusign IAM Plan".
+
+
+* 
+**Policy Conflict:** Exceeding the outlined Feature Count triggers additional per-feature overage fees.
+
+
+* 
+**Action:** Agent triggered a "Product Exception Request" to **Sales Ops** before provisioning the feature.
+
+
+
+
+
+---
+
+Would you like me to **generate the JSON structure** for these exception logs so you can plug them directly into your Replit database?
