@@ -46,12 +46,12 @@ export default function Dashboard() {
           description={`of ${iamMetrics.agreementCount.entitlement.toLocaleString()} Seat Allowance`}
         />
         <KpiCard 
-          title="Navigator Indexing Status" 
-          value={`${iamMetrics.navigatorIndex}%`} 
-          trend="+0.1%" 
-          trendType="positive"
-          icon={Search}
-          description="Personal Archive Indexed"
+          title="Active Agents Overview" 
+          value={activeAgents.length.toString()} 
+          trend="All Systems Go" 
+          trendType="neutral"
+          icon={Brain}
+          description="Agents currently operational"
         />
       </div>
 
@@ -95,80 +95,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Interoperability & Compliance Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-         {/* Connector Health */}
-         <Card className="border-sidebar-border bg-card/50">
-            <CardHeader className="pb-2">
-               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
-                  <Globe className="h-4 w-4" /> Interoperability
-               </CardTitle>
-            </CardHeader>
-            <CardContent>
-               <div className="space-y-3">
-                  {connectorHealth.map((conn) => (
-                     <div key={conn.name} className="flex items-center justify-between text-sm">
-                        <span className="font-medium">{conn.name}</span>
-                        <div className="flex items-center gap-2">
-                           <div className={cn("h-2 w-2 rounded-full", 
-                              conn.status === 'active' || conn.status === 'secure' ? "bg-emerald-500" : "bg-amber-500"
-                           )} />
-                           <span className="text-xs text-muted-foreground">{conn.latency || conn.lastAudit}</span>
-                        </div>
-                     </div>
-                  ))}
-               </div>
-            </CardContent>
-         </Card>
-
-         {/* FedRAMP Boundary */}
-         <Card className="border-sidebar-border bg-card/50">
-            <CardHeader className="pb-2">
-               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
-                  <Shield className="h-4 w-4" /> Global Compliance
-               </CardTitle>
-            </CardHeader>
-            <CardContent>
-               <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between p-3 border border-emerald-900/30 bg-emerald-950/10 rounded-lg">
-                     <div>
-                        <p className="font-medium text-sm">FedRAMP Boundary</p>
-                        <p className="text-xs text-muted-foreground">Audit Status</p>
-                     </div>
-                     <Badge variant="outline" className="text-emerald-500 border-emerald-500/30 bg-emerald-500/10">Authorized</Badge>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
-                     <span>Data Exports</span>
-                     <span>0 Violations</span>
-                  </div>
-               </div>
-            </CardContent>
-         </Card>
-
-         {/* Sandbox Data Guard */}
-         <Card className="border-sidebar-border bg-card/50">
-            <CardHeader className="pb-2">
-               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
-                  <Lock className="h-4 w-4" /> Security & Privacy
-               </CardTitle>
-            </CardHeader>
-            <CardContent>
-               <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between p-3 border border-blue-900/30 bg-blue-950/10 rounded-lg">
-                     <div>
-                        <p className="font-medium text-sm">Sandbox Data Guard</p>
-                        <p className="text-xs text-muted-foreground">PII Detection</p>
-                     </div>
-                     <Badge variant="outline" className="text-blue-500 border-blue-500/30 bg-blue-500/10">Active</Badge>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
-                     <span>Scanned Objects</span>
-                     <span>14.2k</span>
-                  </div>
-               </div>
-            </CardContent>
-         </Card>
-      </div>
+      {/* Interoperability & Compliance Row - Removed */}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
         {/* Honeycomb Grid - Agents */}
