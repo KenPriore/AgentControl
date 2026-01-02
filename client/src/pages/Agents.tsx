@@ -103,34 +103,6 @@ export default function Agents() {
                ))}
             </CardContent>
           </Card>
-          
-          <Card className="bg-gradient-to-br from-emerald-950/20 to-transparent border-emerald-900/20">
-            <CardHeader>
-               <CardTitle className="text-emerald-500">System Health</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="space-y-1">
-                   <div className="flex justify-between text-xs">
-                     <span>Total Token Usage (Daily)</span>
-                     <span className="font-mono">72%</span>
-                   </div>
-                   <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                     <div className="h-full bg-emerald-500 w-[72%]"></div>
-                   </div>
-                </div>
-                <div className="space-y-1">
-                   <div className="flex justify-between text-xs">
-                     <span>Tool Latency</span>
-                     <span className="font-mono">142ms</span>
-                   </div>
-                   <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                     <div className="h-full bg-blue-500 w-[20%]"></div>
-                   </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
