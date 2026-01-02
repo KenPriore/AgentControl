@@ -10,8 +10,9 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/Dashboard";
 import Traceability from "@/pages/Traceability";
 import Agents from "@/pages/Agents";
+import Workflows from "@/pages/Workflows";
 import Inbox from "@/pages/Inbox";
-import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale } from "lucide-react";
+import { LayoutDashboard, FileText, Bot, Inbox as InboxIcon, Menu, ShieldCheck, PieChart, Scale, GitGraph } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -45,8 +46,8 @@ function Sidebar() {
           <ShieldCheck className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <h1 className="font-bold text-sidebar-foreground tracking-tight leading-none">LEX GUARD</h1>
-          <p className="text-[10px] text-muted-foreground font-mono tracking-widest uppercase mt-0.5">Ops & Governance</p>
+          <h1 className="font-bold text-sidebar-foreground tracking-tight leading-none">COUNSEL COPILOT</h1>
+          <p className="text-[10px] text-muted-foreground font-mono tracking-widest uppercase mt-0.5">Legal OS v2.0</p>
         </div>
       </div>
 
@@ -56,6 +57,7 @@ function Sidebar() {
           <NavLink href="/" icon={LayoutDashboard}>Mission Control</NavLink>
           <NavLink href="/claims-analytics" icon={Scale}>Claims Intelligence</NavLink>
           <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
+          <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
         </div>
         
@@ -126,6 +128,7 @@ function Router() {
         <Route path="/vendor-analytics" component={VendorDashboard} />
         <Route path="/traceability" component={Traceability} />
         <Route path="/agents" component={Agents} />
+        <Route path="/workflows" component={Workflows} />
         <Route path="/inbox" component={Inbox} />
         <Route component={NotFound} />
       </Switch>

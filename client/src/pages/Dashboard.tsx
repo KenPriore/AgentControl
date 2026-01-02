@@ -1,11 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { activeAgents, simulationLogs, activityData } from "@/lib/legalData";
-import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap } from "lucide-react";
+import { activeAgents, simulationLogs, activityData, recentWorkflows } from "@/lib/legalData";
+import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap, FileText, CheckCircle, Users, Scale } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Link } from "wouter";
 
 export default function Dashboard() {
   return (
@@ -29,37 +30,36 @@ export default function Dashboard() {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard 
-          title="Active Agents" 
-          value="12" 
-          trend="+2" 
-          trendType="positive"
-          icon={Brain}
-          description="Operational in last hour"
-        />
-        <KpiCard 
-          title="Playbook Deviations" 
-          value="12%" 
-          trend="+0.4%" 
-          trendType="negative"
-          icon={Shield}
-          description="Terms varying from standard"
-        />
-        <KpiCard 
-          title="Intervention Rate" 
-          value="4.8%" 
-          trend="-1.2%" 
-          trendType="positive"
-          icon={Activity}
-          description="Human-in-the-loop triggers"
-        />
-        <KpiCard 
-          title="Hallucinations Caught" 
+          title="Pending Finance Approvals" 
           value="3" 
           trend="+1" 
           trendType="negative"
-          icon={AlertTriangle}
-          description="Blocked by governance layer"
-          alert
+          icon={Users}
+          description="Exceptions requiring CFO review"
+        />
+        <KpiCard 
+          title="Policy Exceptions" 
+          value="12%" 
+          trend="+0.4%" 
+          trendType="negative"
+          icon={Scale}
+          description="Contracts deviating from standard"
+        />
+        <KpiCard 
+          title="Clause Accuracy" 
+          value="99.5%" 
+          trend="+0.1%" 
+          trendType="positive"
+          icon={FileText}
+          description="Automated drafting precision"
+        />
+        <KpiCard 
+          title="Critical Risks Blocked" 
+          value="7" 
+          trend="+2" 
+          trendType="positive"
+          icon={Shield}
+          description="High-severity clauses caught"
         />
       </div>
 
@@ -67,7 +67,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 border-sidebar-border bg-card/50">
           <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">System Throughput</CardTitle>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Contract Velocity (Tokens/Hr)</CardTitle>
           </CardHeader>
           <CardContent className="h-[200px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -110,7 +110,7 @@ export default function Dashboard() {
         
         <Card className="border-sidebar-border bg-card/50">
            <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Governance Health</CardTitle>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Playbook Adherence</CardTitle>
            </CardHeader>
            <CardContent className="flex flex-col justify-center items-center h-[200px]">
               <div className="relative h-32 w-32 flex items-center justify-center">
@@ -128,7 +128,7 @@ export default function Dashboard() {
                  </svg>
                  <div className="absolute flex flex-col items-center">
                     <span className="text-2xl font-bold">90%</span>
-                    <span className="text-[10px] text-muted-foreground uppercase">Compliance</span>
+                    <span className="text-[10px] text-muted-foreground uppercase">Aligned</span>
                  </div>
               </div>
            </CardContent>
@@ -136,12 +136,12 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
-        {/* Honeycomb Grid */}
+        {/* Honeycomb Grid - Agents */}
         <div className="lg:col-span-2 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Activity className="h-5 w-5 text-primary" />
-              Agent Matrix
+              <Brain className="h-5 w-5 text-primary" />
+              Counsel Copilots
             </h2>
           </div>
           
@@ -192,21 +192,49 @@ export default function Dashboard() {
                         <p className="text-sm line-clamp-2">{agent.currentTask}</p>
                       </div>
                     )}
-                    
-                    <div className="flex gap-4 pt-2 border-t border-border/50">
-                      <div>
-                        <p className="text-[10px] text-muted-foreground uppercase">Tasks</p>
-                        <p className="font-mono font-medium">{agent.stats.tasksCompleted}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] text-muted-foreground uppercase">Token Spend</p>
-                         <p className="font-mono font-medium">{(agent.stats.tokensUsed / 1000).toFixed(1)}k</p>
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Recent Workflows Mini-List */}
+          <div className="mt-4">
+            <div className="flex items-center justify-between mb-4">
+               <h2 className="text-xl font-semibold flex items-center gap-2">
+                 <FileText className="h-5 w-5 text-primary" />
+                 Recent Workflows
+               </h2>
+               <Link href="/workflows">
+                 <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-primary">
+                   View All <ArrowRight className="h-3 w-3 ml-1" />
+                 </Button>
+               </Link>
+            </div>
+            <div className="space-y-2">
+               {recentWorkflows.slice(0, 2).map(wf => (
+                 <div key={wf.id} className="flex items-center justify-between p-4 bg-card/50 border border-sidebar-border rounded-lg">
+                    <div className="flex items-center gap-4">
+                       <div className={cn("h-2 w-2 rounded-full", 
+                         wf.status === 'Completed' ? "bg-emerald-500" : 
+                         wf.status === 'Failed' ? "bg-red-500" : "bg-blue-500"
+                       )} />
+                       <div>
+                         <p className="font-medium text-sm">{wf.name}</p>
+                         <p className="text-xs text-muted-foreground">{wf.agent}</p>
+                       </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                       <div className="flex -space-x-2">
+                          <div className={cn("h-6 w-6 rounded-full border-2 border-background flex items-center justify-center text-[8px]", wf.approvals.legal ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground")}>L</div>
+                          <div className={cn("h-6 w-6 rounded-full border-2 border-background flex items-center justify-center text-[8px]", wf.approvals.finance ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground")}>F</div>
+                          <div className={cn("h-6 w-6 rounded-full border-2 border-background flex items-center justify-center text-[8px]", wf.approvals.security ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground")}>S</div>
+                       </div>
+                       <Badge variant="outline" className="text-[10px]">{wf.status}</Badge>
+                    </div>
+                 </div>
+               ))}
+            </div>
           </div>
         </div>
 
