@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { activeAgents, simulationLogs, activityData, recentWorkflows } from "@/lib/legalData";
-import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap, FileText, CheckCircle, Users, Scale } from "lucide-react";
+import { activeAgents, simulationLogs, activityData, recentWorkflows, iamMetrics, connectorHealth } from "@/lib/legalData";
+import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap, FileText, CheckCircle, Users, Scale, Search, Database, Server, GitMerge, Globe, Lock } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
@@ -14,8 +14,8 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Mission Control</h1>
-          <p className="text-muted-foreground mt-1">Real-time oversight of legal autonomous agents and workflows.</p>
+          <h1 className="text-3xl font-bold tracking-tight">Docusign IAM Dashboard</h1>
+          <p className="text-muted-foreground mt-1">Intelligent Agreement Management & Maestro Orchestration</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
@@ -30,36 +30,36 @@ export default function Dashboard() {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard 
-          title="Pending Finance Approvals" 
-          value="3" 
-          trend="+1" 
+          title="Pending Orchestration Steps" 
+          value={iamMetrics.orchestrationSteps}
+          trend="+2" 
           trendType="negative"
-          icon={Users}
-          description="Exceptions requiring CFO review"
+          icon={GitMerge}
+          description="Maestro steps awaiting action"
         />
         <KpiCard 
-          title="Policy Exceptions" 
-          value="12%" 
-          trend="+0.4%" 
-          trendType="negative"
-          icon={Scale}
-          description="Contracts deviating from standard"
+          title="IAM Agreement Count" 
+          value={iamMetrics.agreementCount.current.toLocaleString()} 
+          trend={`${Math.round((iamMetrics.agreementCount.current / iamMetrics.agreementCount.entitlement) * 100)}% Used`} 
+          trendType="neutral"
+          icon={FileText}
+          description={`of ${iamMetrics.agreementCount.entitlement.toLocaleString()} Entitlement`}
         />
         <KpiCard 
-          title="Clause Accuracy" 
-          value="99.5%" 
+          title="Search Intelligence" 
+          value={`${iamMetrics.navigatorIndex}%`} 
           trend="+0.1%" 
           trendType="positive"
-          icon={FileText}
-          description="Automated drafting precision"
+          icon={Search}
+          description="Navigator Documents Indexed"
         />
         <KpiCard 
-          title="Critical Risks Blocked" 
-          value="7" 
-          trend="+2" 
+          title="Seat Allowance" 
+          value={`${iamMetrics.seatAllowance.active} / ${iamMetrics.seatAllowance.total}`}
+          trend={`${iamMetrics.seatAllowance.total - iamMetrics.seatAllowance.active} left`}
           trendType="positive"
-          icon={Shield}
-          description="High-severity clauses caught"
+          icon={Users}
+          description="Active vs Provisioned Users"
         />
       </div>
 
@@ -67,7 +67,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 border-sidebar-border bg-card/50">
           <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Contract Velocity (Tokens/Hr)</CardTitle>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Agreement Lifecycle Velocity</CardTitle>
           </CardHeader>
           <CardContent className="h-[200px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -110,7 +110,7 @@ export default function Dashboard() {
         
         <Card className="border-sidebar-border bg-card/50">
            <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Playbook Adherence</CardTitle>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">IAM Service Schedule Alignment</CardTitle>
            </CardHeader>
            <CardContent className="flex flex-col justify-center items-center h-[200px]">
               <div className="relative h-32 w-32 flex items-center justify-center">
@@ -128,11 +128,86 @@ export default function Dashboard() {
                  </svg>
                  <div className="absolute flex flex-col items-center">
                     <span className="text-2xl font-bold">90%</span>
-                    <span className="text-[10px] text-muted-foreground uppercase">Aligned</span>
+                    <span className="text-[10px] text-muted-foreground uppercase">Compliant</span>
                  </div>
               </div>
            </CardContent>
         </Card>
+      </div>
+
+      {/* Interoperability & Compliance Row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+         {/* Connector Health */}
+         <Card className="border-sidebar-border bg-card/50">
+            <CardHeader className="pb-2">
+               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
+                  <Globe className="h-4 w-4" /> Interoperability
+               </CardTitle>
+            </CardHeader>
+            <CardContent>
+               <div className="space-y-3">
+                  {connectorHealth.map((conn) => (
+                     <div key={conn.name} className="flex items-center justify-between text-sm">
+                        <span className="font-medium">{conn.name}</span>
+                        <div className="flex items-center gap-2">
+                           <div className={cn("h-2 w-2 rounded-full", 
+                              conn.status === 'active' || conn.status === 'secure' ? "bg-emerald-500" : "bg-amber-500"
+                           )} />
+                           <span className="text-xs text-muted-foreground">{conn.latency || conn.lastAudit}</span>
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            </CardContent>
+         </Card>
+
+         {/* FedRAMP Boundary */}
+         <Card className="border-sidebar-border bg-card/50">
+            <CardHeader className="pb-2">
+               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
+                  <Shield className="h-4 w-4" /> Global Compliance
+               </CardTitle>
+            </CardHeader>
+            <CardContent>
+               <div className="flex flex-col gap-4">
+                  <div className="flex items-center justify-between p-3 border border-emerald-900/30 bg-emerald-950/10 rounded-lg">
+                     <div>
+                        <p className="font-medium text-sm">FedRAMP Boundary</p>
+                        <p className="text-xs text-muted-foreground">Audit Status</p>
+                     </div>
+                     <Badge variant="outline" className="text-emerald-500 border-emerald-500/30 bg-emerald-500/10">Authorized</Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
+                     <span>Data Exports</span>
+                     <span>0 Violations</span>
+                  </div>
+               </div>
+            </CardContent>
+         </Card>
+
+         {/* Sandbox Data Guard */}
+         <Card className="border-sidebar-border bg-card/50">
+            <CardHeader className="pb-2">
+               <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider flex items-center gap-2">
+                  <Lock className="h-4 w-4" /> Security & Privacy
+               </CardTitle>
+            </CardHeader>
+            <CardContent>
+               <div className="flex flex-col gap-4">
+                  <div className="flex items-center justify-between p-3 border border-blue-900/30 bg-blue-950/10 rounded-lg">
+                     <div>
+                        <p className="font-medium text-sm">Sandbox Data Guard</p>
+                        <p className="text-xs text-muted-foreground">PII Detection</p>
+                     </div>
+                     <Badge variant="outline" className="text-blue-500 border-blue-500/30 bg-blue-500/10">Active</Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
+                     <span>Scanned Objects</span>
+                     <span>14.2k</span>
+                  </div>
+               </div>
+            </CardContent>
+         </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
@@ -141,7 +216,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Brain className="h-5 w-5 text-primary" />
-              Counsel Copilots
+              Maestro Orchestration Engines
             </h2>
           </div>
           
@@ -203,7 +278,7 @@ export default function Dashboard() {
             <div className="flex items-center justify-between mb-4">
                <h2 className="text-xl font-semibold flex items-center gap-2">
                  <FileText className="h-5 w-5 text-primary" />
-                 Recent Workflows
+                 Recent Agreements
                </h2>
                <Link href="/workflows">
                  <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-primary">
@@ -300,7 +375,9 @@ function KpiCard({ title, value, trend, trendType, icon: Icon, description, aler
         <div className="flex items-baseline gap-2">
           <h3 className="text-2xl font-bold">{value}</h3>
           <span className={cn("text-xs font-medium", 
-            trendType === 'positive' ? "text-emerald-500" : "text-red-500"
+            trendType === 'positive' ? "text-emerald-500" : 
+            trendType === 'neutral' ? "text-blue-400" :
+            "text-red-500"
           )}>
             {trend}
           </span>

@@ -32,9 +32,9 @@ export default function Traceability() {
           <CardHeader className="pb-4 border-b border-border/50">
             <CardTitle className="text-sm font-mono uppercase tracking-widest flex items-center gap-2">
               <GitCommit className="h-4 w-4 text-purple-500" />
-              Workflow Execution
+              Maestro Workflow Execution
             </CardTitle>
-            <CardDescription>Execution ID: #WKF-9928-AX</CardDescription>
+            <CardDescription>Orchestration ID: #WKF-9928-AX</CardDescription>
           </CardHeader>
           <CardContent className="p-0 flex-1 overflow-y-auto">
             <div className="relative p-6">
@@ -184,7 +184,7 @@ export default function Traceability() {
                   )}
 
                   <div className="mt-6">
-                    <h4 className="text-sm font-medium mb-2">Agent Logic Trace</h4>
+                    <h4 className="text-sm font-medium mb-2">Maestro Orchestration Trace</h4>
                     <div className="rounded-md border border-border/50 bg-sidebar-accent/30 p-2">
                       <ScrollArea className="h-[200px]">
                         <div className="flex flex-col gap-1 p-2">

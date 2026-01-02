@@ -1,4 +1,4 @@
-import { LucideIcon, Shield, Search, FileText, Scale, Zap, AlertTriangle, CheckCircle, Brain, Gavel, FileCheck, Users, GitMerge, UserCheck, Lock, Eye, BarChart } from "lucide-react";
+import { LucideIcon, Shield, Search, FileText, Scale, Zap, AlertTriangle, CheckCircle, Brain, Gavel, FileCheck, Users, GitMerge, UserCheck, Lock, Eye, BarChart, Server, Database, Globe } from "lucide-react";
 
 export interface LogStep {
   id: string;
@@ -108,45 +108,59 @@ export const approvalRequests: ApprovalRequest[] = [
 
 import { Box } from "lucide-react"; // Import Box separately as it was missing
 
+export const iamMetrics = {
+  agreementCount: { current: 12450, entitlement: 15000 },
+  seatAllowance: { active: 142, total: 200 },
+  navigatorIndex: 98.4,
+  orchestrationSteps: 14
+};
+
+export const connectorHealth = [
+  { name: "Salesforce", status: "active", latency: "45ms", uptime: "99.99%" },
+  { name: "Workday", status: "active", latency: "120ms", uptime: "99.95%" },
+  { name: "ServiceNow", status: "warning", latency: "350ms", uptime: "98.50%" },
+  { name: "FedRAMP Boundary", status: "secure", lastAudit: "2h ago" }
+];
+
 export const activeAgents: Agent[] = [
   {
     id: "a1",
-    name: "Clause Architect",
-    role: "Contract Drafting",
+    name: "Maestro Orchestrator",
+    role: "Workflow Management",
     status: "active",
     mode: "structured",
-    icon: FileText,
-    currentTask: "Redlining Indemnity Clause to match Series B Preferred Language",
-    stats: { tasksCompleted: 1420, accuracy: 99.5, tokensUsed: 550000 },
+    icon: GitMerge,
+    currentTask: "Routing MSA #4421 through Finance and Security parallel steps",
+    stats: { tasksCompleted: 1420, accuracy: 99.9, tokensUsed: 550000 },
   },
   {
     id: "a2",
-    name: "Policy Guardian",
-    role: "Compliance Check",
+    name: "Navigator Guardian",
+    role: "Search Intelligence",
     status: "active",
     mode: "autonomous",
-    icon: Shield,
-    currentTask: "Cross-referencing Order Form #4421 against Q3 Discount Policy",
-    stats: { tasksCompleted: 112, accuracy: 96.2, tokensUsed: 1300000 },
+    icon: Search,
+    currentTask: "Indexing legacy PDFs and extracting key terms for metadata",
+    stats: { tasksCompleted: 5112, accuracy: 98.2, tokensUsed: 1300000 },
   },
   {
     id: "a3",
-    name: "Approval Sentinel",
-    role: "Workflow Orchestration",
+    name: "Compliance Sentinel",
+    role: "Policy Enforcement",
     status: "idle",
     mode: "structured",
-    icon: Users,
+    icon: Shield,
     stats: { tasksCompleted: 8900, accuracy: 99.9, tokensUsed: 420000 },
   },
   {
     id: "a4",
-    name: "Risk Scout",
-    role: "Risk Management",
-    status: "error",
+    name: "Sandbox Watchdog",
+    role: "Data Guard",
+    status: "active",
     mode: "autonomous",
-    icon: AlertTriangle,
-    currentTask: "Analyzing Force Majeure applicability for Vendor X region",
-    stats: { tasksCompleted: 410, accuracy: 89.0, tokensUsed: 250000 },
+    icon: Lock,
+    currentTask: "Scanning Sandbox environment for PII leakage",
+    stats: { tasksCompleted: 410, accuracy: 100.0, tokensUsed: 250000 },
   },
 ];
 
