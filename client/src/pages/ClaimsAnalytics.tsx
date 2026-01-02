@@ -42,7 +42,7 @@ export default function ClaimsAnalytics() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Claims & Compliance Intelligence</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Clause Intelligence</h1>
           <p className="text-slate-500 text-sm mt-1">Real-time analysis of claims against playbooks, standards, and factual accuracy.</p>
         </div>
         <div className="flex items-center gap-2 bg-white p-1 rounded-lg border border-slate-200">
