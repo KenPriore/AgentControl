@@ -328,7 +328,7 @@ export const recentWorkflows = [
     name: "Partner Onboarding & KYC",
     status: "Completed",
     date: "Today, 11:45 AM",
-    agent: "Maestro Orchestrator",
+    agent: "Identity Verifier",
     approvals: { legal: true, finance: true, security: true }
   },
   {
@@ -336,7 +336,7 @@ export const recentWorkflows = [
     name: "Salesforce Quote Exception",
     status: "In Progress",
     date: "Today, 11:30 AM",
-    agent: "Approval Sentinel",
+    agent: "Request Submitted",
     approvals: { legal: false, finance: true, security: true }
   },
   {
@@ -344,7 +344,7 @@ export const recentWorkflows = [
     name: "FedRAMP Procurement Check",
     status: "Completed",
     date: "Today, 10:20 AM",
-    agent: "Compliance Sentinel",
+    agent: "Request Submitted",
     approvals: { legal: true, finance: true, security: true }
   },
   {
@@ -352,7 +352,7 @@ export const recentWorkflows = [
     name: "Automated Renewal - Navigator",
     status: "Processing",
     date: "Today, 09:15 AM",
-    agent: "Navigator Guardian",
+    agent: "Request Submitted",
     approvals: { legal: true, finance: false, security: false }
   },
   {
@@ -368,7 +368,7 @@ export const recentWorkflows = [
     name: "NDA Review - Vertex Corp",
     status: "Completed",
     date: "Yesterday, 10:15 AM",
-    agent: "Clause Architect",
+    agent: "Request Submitted",
     approvals: { legal: true, finance: true, security: true }
   },
   {
@@ -376,7 +376,7 @@ export const recentWorkflows = [
     name: "MSA Renewal - TechFlow",
     status: "In Progress",
     date: "Yesterday, 09:45 AM",
-    agent: "Policy Guardian",
+    agent: "Request Submitted",
     approvals: { legal: true, finance: false, security: true }
   }
 ];
