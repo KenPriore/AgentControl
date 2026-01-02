@@ -14,7 +14,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Docusign IAM Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Attorney Workflow Monitor</h1>
           <p className="text-muted-foreground mt-1">Intelligent Agreement Management & Maestro Orchestration</p>
         </div>
         <div className="flex gap-2">
