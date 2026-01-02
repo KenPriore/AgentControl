@@ -1,6 +1,5 @@
 import AgentMonitor from "@/pages/AgentMonitor";
 import ClaimsAnalytics from "@/pages/ClaimsAnalytics";
-import VendorDashboard from "@/pages/VendorDashboard";
 import { Switch, Route, Link, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -69,11 +68,6 @@ function Sidebar() {
           <NavLink href="/agents" icon={Bot}>Agent Composition</NavLink>
           <NavLink href="/inbox" icon={InboxIcon}>Attorney Action Queue</NavLink>
         </div>
-
-        <div className="mb-4">
-          <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Spend</p>
-          <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
-        </div>
       </nav>
 
       <div className="mt-auto border-t border-sidebar-border pt-4 px-2">
@@ -133,7 +127,6 @@ function Router() {
       <Switch>
         <Route path="/" component={Dashboard} />
         <Route path="/claims-analytics" component={ClaimsAnalytics} />
-        <Route path="/vendor-analytics" component={VendorDashboard} />
         <Route path="/traceability" component={Traceability} />
         <Route path="/agents" component={Agents} />
         <Route path="/workflows" component={Workflows} />
