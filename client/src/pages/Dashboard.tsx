@@ -38,12 +38,12 @@ export default function Dashboard() {
           description="Tasks assigned to you"
         />
         <KpiCard 
-          title="My Managed Agreements" 
-          value={iamMetrics.agreementCount.current.toLocaleString()} 
-          trend={`${Math.round((iamMetrics.agreementCount.current / iamMetrics.agreementCount.entitlement) * 100)}% Used`} 
+          title="Active Workflows" 
+          value="24" 
+          trend="+5" 
           trendType="neutral"
-          icon={FileText}
-          description={`of ${iamMetrics.agreementCount.entitlement.toLocaleString()} Seat Allowance`}
+          icon={Activity}
+          description="Processing in real-time"
         />
         <KpiCard 
           title="Active Agents Overview" 
