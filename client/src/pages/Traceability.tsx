@@ -37,55 +37,71 @@ export default function Traceability() {
             <CardDescription>Execution ID: #WKF-9928-AX</CardDescription>
           </CardHeader>
           <CardContent className="p-0 flex-1 overflow-y-auto">
-            <div className="relative">
-              {/* Vertical Line */}
-              <div className="absolute left-8 top-6 bottom-6 w-0.5 bg-border/50"></div>
+            <div className="relative p-6">
+              
+              {/* Connector Line */}
+              <div className="absolute left-10 top-10 bottom-10 w-0.5 bg-border/50" />
 
-              <div className="flex flex-col p-6 gap-6">
+              <div className="flex flex-col gap-8 relative z-10">
                 {mockWorkflow.map((step, index) => (
-                  <div 
-                    key={step.id} 
-                    className={cn(
-                      "relative flex gap-4 p-4 rounded-xl border transition-all cursor-pointer group hover:bg-sidebar-accent/30",
-                      selectedStepId === step.id 
-                        ? "border-primary/50 bg-sidebar-accent shadow-md ring-1 ring-primary/20" 
-                        : "border-border/40 bg-card/40"
-                    )}
-                    onClick={() => setSelectedStepId(step.id)}
-                  >
-                    {/* Status Icon */}
-                    <div className={cn(
-                      "relative z-10 h-8 w-8 rounded-full flex items-center justify-center shrink-0 border-2",
-                      step.status === 'completed' ? "bg-emerald-950 border-emerald-500 text-emerald-500" :
-                      step.status === 'failed' ? "bg-red-950 border-red-500 text-red-500" :
-                      step.status === 'processing' ? "bg-blue-950 border-blue-500 text-blue-500 animate-pulse" :
-                      "bg-muted border-muted-foreground text-muted-foreground"
-                    )}>
-                      {step.status === 'completed' && <CheckCircle className="h-4 w-4" />}
-                      {step.status === 'failed' && <XCircle className="h-4 w-4" />}
-                      {step.status === 'processing' && <div className="h-2 w-2 rounded-full bg-blue-500" />}
-                      {step.status === 'pending' && <div className="h-2 w-2 rounded-full bg-muted-foreground" />}
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start">
-                        <h4 className={cn("font-medium text-sm", selectedStepId === step.id ? "text-primary" : "text-foreground")}>
-                          {step.name}
-                        </h4>
-                        <span className="text-[10px] font-mono text-muted-foreground uppercase">{step.type}</span>
+                  <div key={step.id} className="relative group">
+                    {/* Connecting Arrow (visual only, for steps after first) */}
+                    {index > 0 && (
+                      <div className="absolute -top-6 left-5 flex flex-col items-center h-6 w-4">
+                        <div className={cn("w-0.5 h-full", 
+                          mockWorkflow[index-1].status === 'completed' ? "bg-primary/50" : "bg-border/50"
+                        )} />
+                        <ChevronDown className={cn("h-3 w-3 -mt-1",
+                          mockWorkflow[index-1].status === 'completed' ? "text-primary/50" : "text-border/50"
+                        )} />
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {step.status === 'completed' ? "Executed successfully" : 
-                         step.status === 'failed' ? "Validation errors detected" : 
-                         "Waiting for dependencies"}
-                      </p>
-                    </div>
-                    
-                    {selectedStepId === step.id && (
-                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                         <ChevronRight className="h-4 w-4 text-primary" />
-                       </div>
                     )}
+
+                    <div 
+                      className={cn(
+                        "relative flex gap-4 p-4 rounded-xl border transition-all cursor-pointer",
+                        selectedStepId === step.id 
+                          ? "border-primary bg-sidebar-accent shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]" 
+                          : "border-border/40 bg-card/40 hover:bg-card/60 hover:border-border"
+                      )}
+                      onClick={() => setSelectedStepId(step.id)}
+                    >
+                      {/* Status Icon */}
+                      <div className={cn(
+                        "relative z-10 h-8 w-8 rounded-full flex items-center justify-center shrink-0 border-2 shadow-sm transition-transform group-hover:scale-105",
+                        step.status === 'completed' ? "bg-emerald-950/80 border-emerald-500 text-emerald-500" :
+                        step.status === 'failed' ? "bg-red-950/80 border-red-500 text-red-500" :
+                        step.status === 'processing' ? "bg-blue-950/80 border-blue-500 text-blue-500 animate-pulse" :
+                        "bg-muted border-muted-foreground text-muted-foreground"
+                      )}>
+                        {step.status === 'completed' && <CheckCircle className="h-4 w-4" />}
+                        {step.status === 'failed' && <XCircle className="h-4 w-4" />}
+                        {step.status === 'processing' && <div className="h-2 w-2 rounded-full bg-blue-500" />}
+                        {step.status === 'pending' && <div className="h-2 w-2 rounded-full bg-muted-foreground" />}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <div className="flex justify-between items-start">
+                          <h4 className={cn("font-medium text-sm truncate pr-2", selectedStepId === step.id ? "text-primary" : "text-foreground")}>
+                            {step.name}
+                          </h4>
+                          <Badge variant="outline" className="text-[9px] font-mono h-5 px-1.5 uppercase shrink-0">
+                            {step.type}
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1 truncate">
+                          {step.status === 'completed' ? "Executed successfully" : 
+                           step.status === 'failed' ? "Validation errors detected" : 
+                           "Waiting for dependencies"}
+                        </p>
+                      </div>
+                      
+                      {selectedStepId === step.id && (
+                         <div className="absolute right-4 top-1/2 -translate-y-1/2 animate-in fade-in slide-in-from-left-2 duration-300">
+                           <ChevronRight className="h-4 w-4 text-primary" />
+                         </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

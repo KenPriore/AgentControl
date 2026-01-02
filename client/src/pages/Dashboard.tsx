@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { activeAgents, simulationLogs } from "@/lib/legalData";
+import { activeAgents, simulationLogs, activityData } from "@/lib/legalData";
 import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export default function Dashboard() {
   return (
@@ -62,6 +63,78 @@ export default function Dashboard() {
         />
       </div>
 
+      {/* Activity Chart Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-2 border-sidebar-border bg-card/50">
+          <CardHeader>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">System Throughput</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[200px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={activityData}>
+                <defs>
+                  <linearGradient id="colorTokens" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis 
+                  dataKey="time" 
+                  stroke="#525252" 
+                  fontSize={12} 
+                  tickLine={false} 
+                  axisLine={false} 
+                />
+                <YAxis 
+                  stroke="#525252" 
+                  fontSize={12} 
+                  tickLine={false} 
+                  axisLine={false} 
+                  tickFormatter={(value) => `${value}`} 
+                />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b' }}
+                  itemStyle={{ color: '#e2e8f0' }}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="tokens" 
+                  stroke="#10b981" 
+                  fillOpacity={1} 
+                  fill="url(#colorTokens)" 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+        
+        <Card className="border-sidebar-border bg-card/50">
+           <CardHeader>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Governance Health</CardTitle>
+           </CardHeader>
+           <CardContent className="flex flex-col justify-center items-center h-[200px]">
+              <div className="relative h-32 w-32 flex items-center justify-center">
+                 <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
+                   <circle cx="50" cy="50" r="40" fill="none" stroke="#1e293b" strokeWidth="10" />
+                   <circle 
+                      cx="50" cy="50" r="40" 
+                      fill="none" 
+                      stroke="#10b981" 
+                      strokeWidth="10" 
+                      strokeDasharray="251.2" 
+                      strokeDashoffset="25.12" 
+                      strokeLinecap="round"
+                   />
+                 </svg>
+                 <div className="absolute flex flex-col items-center">
+                    <span className="text-2xl font-bold">90%</span>
+                    <span className="text-[10px] text-muted-foreground uppercase">Compliance</span>
+                 </div>
+              </div>
+           </CardContent>
+        </Card>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
         {/* Honeycomb Grid */}
         <div className="lg:col-span-2 flex flex-col gap-4">
@@ -91,12 +164,26 @@ export default function Dashboard() {
                     </Badge>
                   </div>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Mode</span>
                       <span className={cn("font-medium", agent.mode === 'autonomous' ? "text-blue-400" : "text-purple-400")}>
                         {agent.mode === 'autonomous' ? 'Autonomous' : 'Structured Workflow'}
                       </span>
+                    </div>
+
+                    {/* Visual Progress Bars */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] uppercase text-muted-foreground">
+                        <span>Accuracy Confidence</span>
+                        <span>{agent.stats.accuracy}%</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-sidebar-accent rounded-full overflow-hidden">
+                        <div 
+                          className={cn("h-full rounded-full", agent.stats.accuracy > 90 ? "bg-emerald-500" : agent.stats.accuracy > 80 ? "bg-amber-500" : "bg-red-500")} 
+                          style={{ width: `${agent.stats.accuracy}%` }} 
+                        />
+                      </div>
                     </div>
                     
                     {agent.currentTask && (
@@ -108,12 +195,12 @@ export default function Dashboard() {
                     
                     <div className="flex gap-4 pt-2 border-t border-border/50">
                       <div>
-                        <p className="text-[10px] text-muted-foreground uppercase">Accuracy</p>
-                        <p className="font-mono font-medium">{agent.stats.accuracy}%</p>
-                      </div>
-                      <div>
                         <p className="text-[10px] text-muted-foreground uppercase">Tasks</p>
                         <p className="font-mono font-medium">{agent.stats.tasksCompleted}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-muted-foreground uppercase">Token Spend</p>
+                         <p className="font-mono font-medium">{(agent.stats.tokensUsed / 1000).toFixed(1)}k</p>
                       </div>
                     </div>
                   </div>

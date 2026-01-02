@@ -125,6 +125,17 @@ export const simulationLogs: LogStep[] = [
   },
 ];
 
+export const activityData = [
+  { time: "09:00", tokens: 1200, tasks: 45 },
+  { time: "09:15", tokens: 1800, tasks: 52 },
+  { time: "09:30", tokens: 2400, tasks: 68 },
+  { time: "09:45", tokens: 3800, tasks: 85 },
+  { time: "10:00", tokens: 3200, tasks: 72 },
+  { time: "10:15", tokens: 4500, tasks: 90 },
+  { time: "10:30", tokens: 5100, tasks: 112 },
+  { time: "10:45", tokens: 4800, tasks: 105 },
+];
+
 export const mockWorkflow: WorkflowStep[] = [
   {
     id: "s1",
