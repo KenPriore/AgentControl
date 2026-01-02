@@ -59,8 +59,8 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 gap-6">
         <Card className="border-sidebar-border bg-card/50">
           <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Policy Exception Frequency</CardTitle>
-            <CardDescription className="text-xs">Volume by exception type to refine standard playbooks</CardDescription>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">AGENT & WORKFLOW PERFORMANCE</CardTitle>
+            <CardDescription className="text-xs">Volume of autonomous agent tasks and Maestro workflow runs by clause type.</CardDescription>
           </CardHeader>
           <CardContent className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -78,10 +78,10 @@ export default function Dashboard() {
                   tickLine={false} 
                   axisLine={false} 
                   tickFormatter={(value) => `${value}`} 
+                  label={{ value: 'Number of Runs', angle: -90, position: 'insideLeft', style: { fill: '#525252', fontSize: 12, textAnchor: 'middle' }, offset: 15 }}
                 />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b' }}
-                  itemStyle={{ color: '#e2e8f0' }}
+                  content={<CustomTooltip />}
                   cursor={{ fill: '#1e293b', opacity: 0.4 }}
                 />
                 <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
@@ -274,3 +274,28 @@ function KpiCard({ title, value, trend, trendType, icon: Icon, description, aler
     </Card>
   );
 }
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    const total = payload.reduce((acc: number, entry: any) => acc + (entry.value || 0), 0);
+    return (
+      <div className="bg-popover border border-border p-3 rounded-lg shadow-xl text-xs">
+        <p className="font-bold text-popover-foreground mb-2">{label}</p>
+        {payload.map((entry: any, index: number) => (
+          <div key={index} className="flex items-center justify-between gap-4 mb-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
+              <span className="text-muted-foreground">{entry.name}</span>
+            </div>
+            <span className="font-mono text-popover-foreground">{entry.value}</span>
+          </div>
+        ))}
+        <div className="border-t border-border mt-2 pt-2 flex items-center justify-between font-medium">
+          <span className="text-muted-foreground">Total Runs</span>
+          <span className="text-emerald-500">{total}</span>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
