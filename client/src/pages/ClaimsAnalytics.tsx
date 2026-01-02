@@ -37,16 +37,16 @@ const reviewQueue = [
 
 export default function ClaimsAnalytics() {
   return (
-    <div className="flex flex-col gap-6 max-w-[1600px] mx-auto p-6 bg-[#0f172a] text-slate-100 min-h-screen">
+    <div className="flex flex-col gap-6 max-w-[1600px] mx-auto p-6 bg-slate-50 text-slate-900 min-h-screen">
       
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Claims & Compliance Intelligence</h1>
-          <p className="text-slate-400 text-sm mt-1">Real-time analysis of claims against playbooks, standards, and factual accuracy.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Claims & Compliance Intelligence</h1>
+          <p className="text-slate-500 text-sm mt-1">Real-time analysis of claims against playbooks, standards, and factual accuracy.</p>
         </div>
-        <div className="flex items-center gap-2 bg-[#1e293b] p-1 rounded-lg border border-slate-700">
-           <span className="text-xs font-medium px-3 py-1 text-slate-400">System Status:</span>
+        <div className="flex items-center gap-2 bg-white p-1 rounded-lg border border-slate-200">
+           <span className="text-xs font-medium px-3 py-1 text-slate-500">System Status:</span>
            <span className="text-xs font-bold px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded flex items-center gap-1">
              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live Monitoring
            </span>
@@ -80,7 +80,7 @@ export default function ClaimsAnalytics() {
 
         {/* Chart 3: Fact Check Errors */}
         <ChartCard 
-          title="Fact Verification" 
+          title="Clause Generation" 
           subtitle="Accuracy & Hallucination Check"
           data={factCheckData}
           total={178}
@@ -116,12 +116,12 @@ export default function ClaimsAnalytics() {
          />
 
          {/* Table 3: Human Review Queue (The "Ask for Human" Section) */}
-         <Card className="border-slate-700 bg-[#1e293b] shadow-lg flex flex-col h-full">
-            <CardHeader className="pb-3 border-b border-slate-700/50">
+         <Card className="border-slate-200 bg-white shadow-lg flex flex-col h-full">
+            <CardHeader className="pb-3 border-b border-slate-200">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-slate-100 flex items-center gap-2">
-                  <UserCheck className="h-4 w-4 text-purple-400" />
-                  Pending Human Determination
+                <CardTitle className="text-sm font-medium text-slate-900 flex items-center gap-2">
+                  <UserCheck className="h-4 w-4 text-purple-600" />
+                  Attorney Approval Required
                 </CardTitle>
                 <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/20">
                   5 Actions
@@ -129,27 +129,27 @@ export default function ClaimsAnalytics() {
               </div>
             </CardHeader>
             <CardContent className="p-0">
-               <div className="divide-y divide-slate-700/50">
+               <div className="divide-y divide-slate-200">
                  {reviewQueue.map((item) => (
-                   <div key={item.id} className="p-4 hover:bg-slate-800/50 transition-colors group cursor-pointer">
+                   <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors group cursor-pointer">
                       <div className="flex justify-between items-start mb-1">
                         <span className="font-mono text-[10px] text-slate-500">{item.id}</span>
                         <span className="text-[10px] text-slate-400">{item.time}</span>
                       </div>
                       <div className="flex justify-between items-start gap-4">
                          <div>
-                            <p className="text-sm font-medium text-slate-200 group-hover:text-purple-400 transition-colors">{item.desc}</p>
-                            <p className="text-xs text-slate-400 mt-0.5">{item.type}</p>
+                            <p className="text-sm font-medium text-slate-900 group-hover:text-purple-600 transition-colors">{item.desc}</p>
+                            <p className="text-xs text-slate-500 mt-0.5">{item.type}</p>
                          </div>
-                         <Button size="sm" variant="outline" className="h-7 text-xs border-slate-600 bg-slate-800 hover:bg-purple-900/20 hover:text-purple-400 hover:border-purple-500/50">
+                         <Button size="sm" variant="outline" className="h-7 text-xs border-slate-200 bg-white hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200">
                            Review
                          </Button>
                       </div>
                    </div>
                  ))}
                </div>
-               <div className="p-3 border-t border-slate-700/50 text-center">
-                 <Button variant="ghost" className="text-xs text-slate-400 hover:text-white w-full h-8">
+               <div className="p-3 border-t border-slate-200 text-center">
+                 <Button variant="ghost" className="text-xs text-slate-500 hover:text-slate-900 w-full h-8">
                    View Full Queue
                  </Button>
                </div>
@@ -164,20 +164,20 @@ export default function ClaimsAnalytics() {
 function ChartCard({ title, subtitle, data, total, alertCount, icon: Icon, color }: any) {
   // Determine color for the big number/icon based on the 'color' prop
   const colorClass = 
-    color === 'blue' ? 'text-blue-500' : 
-    color === 'emerald' ? 'text-emerald-500' : 
-    color === 'amber' ? 'text-amber-500' : 'text-slate-500';
+    color === 'blue' ? 'text-blue-600' : 
+    color === 'emerald' ? 'text-emerald-600' : 
+    color === 'amber' ? 'text-amber-600' : 'text-slate-600';
 
   return (
-    <Card className="border-slate-700 bg-[#1e293b] shadow-lg relative overflow-hidden">
+    <Card className="border-slate-200 bg-white shadow-lg relative overflow-hidden">
       <div className="absolute top-0 right-0 p-3">
-         <button className="text-slate-500 hover:text-white transition-colors">
+         <button className="text-slate-400 hover:text-slate-900 transition-colors">
             <XCircle className="h-4 w-4" />
          </button>
       </div>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold text-slate-100">{title}</CardTitle>
-        <p className="text-xs text-slate-400">{subtitle}</p>
+        <CardTitle className="text-base font-semibold text-slate-900">{title}</CardTitle>
+        <p className="text-xs text-slate-500">{subtitle}</p>
       </CardHeader>
       <CardContent className="flex flex-col items-center pb-6">
         <div className="h-[200px] w-full relative">
@@ -198,26 +198,26 @@ function ChartCard({ title, subtitle, data, total, alertCount, icon: Icon, color
                 ))}
               </Pie>
               <RechartsTooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '6px' }}
-                  itemStyle={{ color: '#e2e8f0' }}
+                  contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                  itemStyle={{ color: '#1e293b' }}
               />
             </PieChart>
           </ResponsiveContainer>
           {/* Center Content */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center justify-center">
              <div className={cn("text-4xl font-bold", colorClass)}>{alertCount}</div>
-             <div className="text-[10px] text-slate-400 uppercase tracking-widest mt-1">Alerts</div>
+             <div className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Alerts</div>
           </div>
         </div>
         
-        <div className="w-full mt-2 grid grid-cols-3 divide-x divide-slate-700 border-t border-slate-700 pt-4">
+        <div className="w-full mt-2 grid grid-cols-3 divide-x divide-slate-200 border-t border-slate-200 pt-4">
            {data.map((item: any) => (
              <div key={item.name} className="flex flex-col items-center px-2">
                <div className="flex items-center gap-1.5 mb-1">
                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.fill }} />
-                 <span className="text-[10px] text-slate-400 truncate max-w-[60px]">{item.name}</span>
+                 <span className="text-[10px] text-slate-500 truncate max-w-[60px]">{item.name}</span>
                </div>
-               <span className="text-lg font-bold text-slate-200">{item.value}</span>
+               <span className="text-lg font-bold text-slate-900">{item.value}</span>
              </div>
            ))}
         </div>
@@ -228,36 +228,36 @@ function ChartCard({ title, subtitle, data, total, alertCount, icon: Icon, color
 
 function DetailTable({ title, rows, icon: Icon }: any) {
   return (
-    <Card className="border-slate-700 bg-[#1e293b] shadow-lg flex flex-col h-full">
-      <CardHeader className="pb-3 border-b border-slate-700/50">
-        <CardTitle className="text-sm font-medium text-slate-100 flex items-center gap-2">
-          {Icon && <Icon className="h-4 w-4 text-slate-400" />}
+    <Card className="border-slate-200 bg-white shadow-lg flex flex-col h-full">
+      <CardHeader className="pb-3 border-b border-slate-200">
+        <CardTitle className="text-sm font-medium text-slate-900 flex items-center gap-2">
+          {Icon && <Icon className="h-4 w-4 text-slate-500" />}
           {title}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <div className="w-full">
-          <div className="grid grid-cols-12 px-4 py-2 bg-slate-800/50 text-[10px] uppercase font-bold text-slate-500">
+          <div className="grid grid-cols-12 px-4 py-2 bg-slate-50 text-[10px] uppercase font-bold text-slate-500">
              <div className="col-span-7">Issue Type</div>
              <div className="col-span-3">Severity</div>
              <div className="col-span-2 text-right">Count</div>
           </div>
-          <div className="divide-y divide-slate-700/50">
+          <div className="divide-y divide-slate-200">
             {rows.map((row: any, i: number) => (
-              <div key={i} className="grid grid-cols-12 px-4 py-3 text-sm items-center hover:bg-slate-800/30">
-                <div className="col-span-7 font-medium text-slate-300">{row.label}</div>
+              <div key={i} className="grid grid-cols-12 px-4 py-3 text-sm items-center hover:bg-slate-50">
+                <div className="col-span-7 font-medium text-slate-700">{row.label}</div>
                 <div className="col-span-3">
                    <Badge variant="outline" className={cn(
                      "text-[10px] h-5 px-1.5 border-0",
-                     row.severity === 'Critical' ? "bg-red-500/20 text-red-400" :
-                     row.severity === 'High' ? "bg-orange-500/20 text-orange-400" :
-                     row.severity === 'Med' ? "bg-yellow-500/20 text-yellow-400" :
-                     "bg-blue-500/20 text-blue-400"
+                     row.severity === 'Critical' ? "bg-red-100 text-red-600" :
+                     row.severity === 'High' ? "bg-orange-100 text-orange-600" :
+                     row.severity === 'Med' ? "bg-yellow-100 text-yellow-600" :
+                     "bg-blue-100 text-blue-600"
                    )}>
                      {row.severity}
                    </Badge>
                 </div>
-                <div className="col-span-2 text-right font-mono text-slate-400">{row.count}</div>
+                <div className="col-span-2 text-right font-mono text-slate-500">{row.count}</div>
               </div>
             ))}
           </div>
