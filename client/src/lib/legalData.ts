@@ -290,10 +290,50 @@ export const hitlQueueItems = [
 
 export const recentWorkflows = [
   {
+    id: "WKF-2024-005",
+    name: "Partner Onboarding & KYC",
+    status: "Completed",
+    date: "Today, 11:45 AM",
+    agent: "Maestro Orchestrator",
+    approvals: { legal: true, finance: true, security: true }
+  },
+  {
+    id: "WKF-2024-006",
+    name: "Salesforce Quote Exception",
+    status: "In Progress",
+    date: "Today, 11:30 AM",
+    agent: "Approval Sentinel",
+    approvals: { legal: false, finance: true, security: true }
+  },
+  {
+    id: "WKF-2024-007",
+    name: "FedRAMP Procurement Check",
+    status: "Completed",
+    date: "Today, 10:20 AM",
+    agent: "Compliance Sentinel",
+    approvals: { legal: true, finance: true, security: true }
+  },
+  {
+    id: "WKF-2024-008",
+    name: "Automated Renewal - Navigator",
+    status: "Processing",
+    date: "Today, 09:15 AM",
+    agent: "Navigator Guardian",
+    approvals: { legal: true, finance: false, security: false }
+  },
+  {
+    id: "WKF-2024-009",
+    name: "HR Offer Letter & IDV",
+    status: "Completed",
+    date: "Yesterday, 3:45 PM",
+    agent: "Identity Verifier",
+    approvals: { legal: true, finance: true, security: true }
+  },
+  {
     id: "WKF-2024-001",
     name: "NDA Review - Vertex Corp",
     status: "Completed",
-    date: "Today, 10:15 AM",
+    date: "Yesterday, 10:15 AM",
     agent: "Clause Architect",
     approvals: { legal: true, finance: true, security: true }
   },
@@ -301,24 +341,8 @@ export const recentWorkflows = [
     id: "WKF-2024-002",
     name: "MSA Renewal - TechFlow",
     status: "In Progress",
-    date: "Today, 09:45 AM",
+    date: "Yesterday, 09:45 AM",
     agent: "Policy Guardian",
     approvals: { legal: true, finance: false, security: true }
-  },
-  {
-    id: "WKF-2024-003",
-    name: "Vendor Agreement - OfficeSupplies",
-    status: "Failed",
-    date: "Yesterday, 4:30 PM",
-    agent: "Risk Scout",
-    approvals: { legal: false, finance: false, security: false }
-  },
-  {
-    id: "WKF-2024-004",
-    name: "SaaS Order Form - BigBank",
-    status: "Completed",
-    date: "Yesterday, 2:15 PM",
-    agent: "Approval Sentinel",
-    approvals: { legal: true, finance: true, security: true }
   }
 ];
