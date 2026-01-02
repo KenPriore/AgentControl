@@ -56,7 +56,7 @@ function Sidebar() {
       <nav className="flex-1">
         <div className="mb-4">
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Oversight</p>
-          <NavLink href="/" icon={LayoutDashboard}>Nexus Command</NavLink>
+          <NavLink href="/" icon={LayoutDashboard}>Intelligence Desk</NavLink>
           <NavLink href="/claims-analytics" icon={Scale}>Clause Intelligence</NavLink>
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
           <NavLink href="/agent-monitor" icon={Activity}>Agent Monitor</NavLink>
