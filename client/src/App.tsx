@@ -61,11 +61,11 @@ function Sidebar() {
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
           <NavLink href="/agent-monitor" icon={Activity}>Agent Monitor</NavLink>
           <NavLink href="/approvals" icon={CheckSquare}>Stakeholder Approvals</NavLink>
-          <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
         </div>
         
         <div className="mb-4">
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Operations</p>
+          <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
           <NavLink href="/agents" icon={Bot}>Agent Composition</NavLink>
           <NavLink href="/inbox" icon={InboxIcon}>HITL Queue</NavLink>
         </div>

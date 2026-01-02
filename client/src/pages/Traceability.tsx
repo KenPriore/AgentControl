@@ -11,7 +11,66 @@ import { Separator } from "@/components/ui/separator";
 export default function Traceability() {
   const [selectedStepId, setSelectedStepId] = useState<string>("s3"); // Default to the failed step for demo
 
-  const selectedStep = mockWorkflow.find(s => s.id === selectedStepId);
+  // Enhanced Mock Data synced with Workflow History & Agent Monitor
+  const auditSteps = [
+    {
+      id: "s1",
+      name: "Partner Onboarding Trigger",
+      status: "completed",
+      type: "input",
+      details: {
+        input: "Web Form Submission: Nexus Systems Inc.\nRequester: Alex Rivera (Partner Ops)\nDeal Value: $150k",
+        output: "Entity Normalized: NEXUS-SYS-2024\nRisk Profile: LOW",
+        validationErrors: []
+      }
+    },
+    {
+      id: "s2",
+      name: "Identity Verification (IDV)",
+      status: "completed",
+      type: "validation",
+      details: {
+        input: "Upload: driver_license_front.jpg\nMatch Confidence Threshold: 90%",
+        output: "Verification Passed: 98.4% Match\nDocument: Valid Government ID",
+        validationErrors: []
+      }
+    },
+    {
+      id: "s3",
+      name: "Compliance & Sanctions Check",
+      status: "completed",
+      type: "processing",
+      details: {
+        input: "Entity: Nexus Systems Inc.\nJurisdiction: US-CA",
+        output: "OFAC Screen: CLEAR\nExport Control: CLEAR",
+        validationErrors: []
+      }
+    },
+    {
+      id: "s4",
+      name: "Quote Exception Logic",
+      status: "completed",
+      type: "processing",
+      details: {
+        input: "Discount Requested: 15%\nStandard Threshold: 10%\nApprover: Finance (Auto-Routed)",
+        output: "Approval Route: FINANCE_Director_Level",
+        validationErrors: []
+      }
+    },
+    {
+      id: "s5",
+      name: "Contract Generation",
+      status: "failed",
+      type: "processing",
+      details: {
+        input: "Template: Partner_Reseller_Agreement_v4.docx\nVariables: {payment_terms: 'Net 60'}",
+        output: "Generation Halted",
+        validationErrors: ["Policy Violation: 'Net 60' exceeds standard 'Net 45' for this partner tier."]
+      }
+    }
+  ];
+
+  const selectedStep = auditSteps.find(s => s.id === selectedStepId);
 
   return (
     <div className="flex flex-col h-[calc(100vh-theme(spacing.24))] gap-6 max-w-[1600px] mx-auto">
@@ -34,7 +93,7 @@ export default function Traceability() {
               <GitCommit className="h-4 w-4 text-purple-500" />
               Maestro Workflow Execution
             </CardTitle>
-            <CardDescription>Orchestration ID: #WKF-9928-AX</CardDescription>
+            <CardDescription>Orchestration ID: #WKF-2024-005</CardDescription>
           </CardHeader>
           <CardContent className="p-0 flex-1 overflow-y-auto">
             <div className="relative p-6">
@@ -43,16 +102,16 @@ export default function Traceability() {
               <div className="absolute left-10 top-10 bottom-10 w-0.5 bg-border/50" />
 
               <div className="flex flex-col gap-8 relative z-10">
-                {mockWorkflow.map((step, index) => (
+                {auditSteps.map((step, index) => (
                   <div key={step.id} className="relative group">
                     {/* Connecting Arrow (visual only, for steps after first) */}
                     {index > 0 && (
                       <div className="absolute -top-6 left-5 flex flex-col items-center h-6 w-4">
                         <div className={cn("w-0.5 h-full", 
-                          mockWorkflow[index-1].status === 'completed' ? "bg-primary/50" : "bg-border/50"
+                          auditSteps[index-1].status === 'completed' ? "bg-primary/50" : "bg-border/50"
                         )} />
                         <ChevronDown className={cn("h-3 w-3 -mt-1",
-                          mockWorkflow[index-1].status === 'completed' ? "text-primary/50" : "text-border/50"
+                          auditSteps[index-1].status === 'completed' ? "text-primary/50" : "text-border/50"
                         )} />
                       </div>
                     )}
@@ -155,7 +214,7 @@ export default function Traceability() {
                     <h3 className="text-xs font-mono text-muted-foreground uppercase mb-3 flex items-center gap-2">
                       <Terminal className="h-3 w-3" /> Output / Result
                     </h3>
-                     <div className="bg-card rounded-md border border-border/50 p-4 font-mono text-xs text-foreground leading-relaxed">
+                     <div className="bg-card rounded-md border border-border/50 p-4 font-mono text-xs text-foreground leading-relaxed whitespace-pre-wrap">
                       {selectedStep.details.output || "No output generated."}
                     </div>
                   </div>
