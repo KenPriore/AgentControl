@@ -57,7 +57,6 @@ function Sidebar() {
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Oversight</p>
           <NavLink href="/" icon={LayoutDashboard}>Mission Control</NavLink>
           <NavLink href="/claims-analytics" icon={Scale}>Claims Intelligence</NavLink>
-          <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
           <NavLink href="/workflows" icon={GitGraph}>Workflow History</NavLink>
           <NavLink href="/approvals" icon={CheckSquare}>Stakeholder Approvals</NavLink>
           <NavLink href="/traceability" icon={FileText}>Traceability Audit</NavLink>
@@ -67,6 +66,11 @@ function Sidebar() {
           <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Operations</p>
           <NavLink href="/agents" icon={Bot}>Agent Composition</NavLink>
           <NavLink href="/inbox" icon={InboxIcon}>HITL Queue</NavLink>
+        </div>
+
+        <div className="mb-4">
+          <p className="px-2 text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Spend</p>
+          <NavLink href="/vendor-analytics" icon={PieChart}>Vendor Analytics</NavLink>
         </div>
       </nav>
 
