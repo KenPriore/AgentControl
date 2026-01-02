@@ -55,7 +55,7 @@ const agentActivityLog = [
 
 const decisionDistribution = [
   { name: "Autonomous", value: 85, fill: "#10b981" }, // Emerald-500
-  { name: "Human Handoff", value: 15, fill: "#f59e0b" }, // Amber-500
+  { name: "Attorney Review", value: 15, fill: "#f59e0b" }, // Amber-500
 ];
 
 const dataAccessHeatmap = [
@@ -128,7 +128,7 @@ export default function AgentMonitor() {
             </CardTitle>
             <CardDescription className="text-xs">Autonomous vs. Human-in-the-Loop (Maestro & Agents)</CardDescription>
           </CardHeader>
-          <CardContent className="relative flex items-center justify-center h-[200px]">
+          <CardContent className="relative flex items-center justify-center h-[250px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -148,7 +148,7 @@ export default function AgentMonitor() {
                   contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '6px' }}
                   itemStyle={{ color: '#1e293b' }}
                 />
-                <Legend verticalAlign="bottom" height={36} iconType="circle" />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" formatter={(value) => <span className="ml-2 mr-4 text-sm font-medium">{value}</span>} />
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none pb-8">
