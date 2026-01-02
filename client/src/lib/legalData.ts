@@ -211,15 +211,13 @@ export const simulationLogs: LogStep[] = [
   },
 ];
 
-export const activityData = [
-  { time: "09:00", tokens: 1200, tasks: 45 },
-  { time: "09:15", tokens: 1800, tasks: 52 },
-  { time: "09:30", tokens: 2400, tasks: 68 },
-  { time: "09:45", tokens: 3800, tasks: 85 },
-  { time: "10:00", tokens: 3200, tasks: 72 },
-  { time: "10:15", tokens: 4500, tasks: 90 },
-  { time: "10:30", tokens: 5100, tasks: 112 },
-  { time: "10:45", tokens: 4800, tasks: 105 },
+export const policyExceptionData = [
+  { month: "Jan", indemnity: 12, dataPrivacy: 8, liability: 5, paymentTerms: 15 },
+  { month: "Feb", indemnity: 15, dataPrivacy: 12, liability: 7, paymentTerms: 12 },
+  { month: "Mar", indemnity: 18, dataPrivacy: 10, liability: 4, paymentTerms: 10 },
+  { month: "Apr", indemnity: 14, dataPrivacy: 15, liability: 8, paymentTerms: 8 },
+  { month: "May", indemnity: 22, dataPrivacy: 18, liability: 12, paymentTerms: 11 },
+  { month: "Jun", indemnity: 25, dataPrivacy: 22, liability: 15, paymentTerms: 9 },
 ];
 
 export const mockWorkflow: WorkflowStep[] = [

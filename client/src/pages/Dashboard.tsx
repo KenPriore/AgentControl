@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { activeAgents, simulationLogs, activityData, recentWorkflows, iamMetrics, connectorHealth } from "@/lib/legalData";
+import { activeAgents, simulationLogs, policyExceptionData, recentWorkflows, iamMetrics, connectorHealth } from "@/lib/legalData";
 import { Activity, AlertTriangle, ArrowRight, Brain, Clock, Shield, Terminal, Zap, FileText, CheckCircle, Users, Scale, Search, Database, Server, GitMerge, Globe, Lock } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from "recharts";
 import { Link } from "wouter";
 
 export default function Dashboard() {
@@ -67,19 +67,14 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 border-sidebar-border bg-card/50">
           <CardHeader>
-            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Agreement Lifecycle Velocity</CardTitle>
+            <CardTitle className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Policy Exception Frequency</CardTitle>
+            <CardDescription className="text-xs">Volume by exception type to refine standard playbooks</CardDescription>
           </CardHeader>
           <CardContent className="h-[200px]">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={activityData}>
-                <defs>
-                  <linearGradient id="colorTokens" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
+              <BarChart data={policyExceptionData}>
                 <XAxis 
-                  dataKey="time" 
+                  dataKey="month" 
                   stroke="#525252" 
                   fontSize={12} 
                   tickLine={false} 
@@ -95,15 +90,14 @@ export default function Dashboard() {
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b' }}
                   itemStyle={{ color: '#e2e8f0' }}
+                  cursor={{ fill: '#1e293b', opacity: 0.4 }}
                 />
-                <Area 
-                  type="monotone" 
-                  dataKey="tokens" 
-                  stroke="#10b981" 
-                  fillOpacity={1} 
-                  fill="url(#colorTokens)" 
-                />
-              </AreaChart>
+                <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+                <Bar dataKey="indemnity" name="Indemnity" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="dataPrivacy" name="Data Privacy" stackId="a" fill="#3b82f6" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="liability" name="Liability Cap" stackId="a" fill="#f59e0b" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="paymentTerms" name="Payment Terms" stackId="a" fill="#6366f1" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
